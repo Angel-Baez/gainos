@@ -125,8 +125,15 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
       {/* Camera View */}
       <div className="flex-1 relative overflow-hidden">
         {error ? (
-          <div className="absolute inset-0 flex items-center justify-center p-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 gap-4">
             <p className="text-white text-center">{error}</p>
+            <Button
+              variant="outline"
+              onClick={onCancel}
+              className="bg-transparent border-white text-white hover:bg-white/10"
+            >
+              Cerrar
+            </Button>
           </div>
         ) : photo ? (
           // eslint-disable-next-line @next/next/no-img-element

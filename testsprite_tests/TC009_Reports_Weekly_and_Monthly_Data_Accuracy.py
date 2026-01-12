@@ -46,147 +46,105 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed with meal and weight entry steps.
+        # -> Click the 'Continuar' button to proceed with onboarding and start entering meals and weight data.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the welcome page
+        # Click the 'Continuar' button to proceed with onboarding
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a weight value and click 'Continuar' to proceed with meal and weight entry steps.
+        # -> Input a current weight value (e.g., 150) into the weight input field and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input weight value 150 lb
+        # Input current weight value 150 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('150')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after weight entry
+        # Click 'Continuar' button to proceed after entering weight
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed with meal and weight entry steps.
+        # -> Click the 'Continuar' button to proceed with onboarding and start entering meals and weight data.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the welcome page
+        # Click the 'Continuar' button to proceed with onboarding
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next step in the meal and weight entry process.
+        # -> Click the 'Continuar' button to proceed to the next onboarding step and continue entering data.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after weight entry
+        # Click the 'Continuar' button to proceed with onboarding
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a goal weight value and click 'Continuar' to proceed with meal and weight entry steps.
+        # -> Input a target weight value (e.g., 160) into the target weight input field and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input goal weight value 160 lb
+        # Input target weight value 160 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('160')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after goal weight entry
+        # Click 'Continuar' button to proceed after entering target weight
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed after confirming the start date.
+        # -> Click the 'Continuar' button to proceed with onboarding after confirming the start date.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after confirming the start date
+        # Click the 'Continuar' button to proceed after confirming start date
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to start the tracking process and proceed to meal and weight entries.
+        # -> Click the '¡Comenzar!' button to finish onboarding and begin data entry.
         frame = context.pages[-1]
-        # Click '¡Comenzar!' button to start the tracking process and proceed to meal and weight entries
+        # Click the '¡Comenzar!' button to finish onboarding and start data entry
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Reportes' tab to navigate to the Reports page for verification after some data entry.
+        # -> Begin entering meal completion data for the current day by navigating to the 'Comidas' section.
         frame = context.pages[-1]
-        # Click the 'Reportes' tab to navigate to the Reports page
-        elem = frame.locator('xpath=html/body/nav/div/a[4]').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Switch to the monthly report tab to verify monthly aggregation of data.
-        frame = context.pages[-1]
-        # Click the 'Mensual' tab to switch to monthly report view
-        elem = frame.locator('xpath=html/body/main/div/div[2]/div/button[2]').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Complete meals and weight entries over several weeks to generate data for report verification.
-        frame = context.pages[-1]
-        # Click 'Comidas' tab to start entering meal completions for several weeks
+        # Click 'Comidas' to enter meal completion data
         elem = frame.locator('xpath=html/body/nav/div/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Complete meal entries for the current day by marking meals as completed, then proceed to enter weight data for several weeks.
+        # -> Mark the first meal 'Batida Matutina' as completed by clicking its checkbox to simulate meal completion.
         frame = context.pages[-1]
-        # Mark 'Batida Matutina' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div').nth(0)
+        # Click the checkbox to mark 'Batida Matutina' meal as completed
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div/div').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
+        # -> Mark the second meal 'Desayuno Solido' as completed by clicking its checkbox to simulate meal completion.
         frame = context.pages[-1]
-        # Mark 'Desayuno Solido' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div[2]/div').nth(0)
+        # Click the checkbox to mark 'Desayuno Solido' meal as completed
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[2]/div/div').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
+        # -> Mark the third meal 'Snack Media Manana' as completed by clicking its checkbox to simulate meal completion.
         frame = context.pages[-1]
-        # Mark 'Snack Media Manana' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div[3]/div').nth(0)
+        # Click the checkbox to mark 'Snack Media Manana' meal as completed
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[3]/div/div').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
+        # -> Mark the fourth meal 'Almuerzo Principal' as completed by clicking its checkbox to simulate meal completion.
         frame = context.pages[-1]
-        # Mark 'Almuerzo Principal' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div[4]/div').nth(0)
+        # Click the checkbox to mark 'Almuerzo Principal' meal as completed
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[4]/div/div').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
+        # -> Navigate to the 'Peso' (Weight) page to enter weight data for the current day.
         frame = context.pages[-1]
-        # Mark 'Merienda Tarde' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div[5]/div').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        # Mark 'Pre-Cena' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div[6]/div').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        # Mark 'Cena Principal' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div[7]/div').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Mark the last meal 'Batida Nocturna' as completed, then navigate to the 'Peso' tab to enter weight data for the current day.
-        frame = context.pages[-1]
-        # Mark 'Batida Nocturna' meal as completed
-        elem = frame.locator('xpath=html/body/nav/div/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Retry marking the last meal 'Batida Nocturna' as completed, then click the 'Peso' tab to enter weight data for the current day.
-        frame = context.pages[-1]
-        # Retry marking 'Batida Nocturna' meal as completed
-        elem = frame.locator('xpath=html/body/main/div/div[5]/div/div[3]/div[3]/div[2]').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        # Click the 'Peso' tab to navigate to weight entry page
+        # Click 'Peso' to navigate to weight entry page
         elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
@@ -201,9 +159,9 @@ async def run_test():
         # --> Assertions to verify final state
         frame = context.pages[-1]
         try:
-            await expect(frame.locator('text=Aggregated Weekly and Monthly Meal Completion Summary').first).to_be_visible(timeout=1000)
+            await expect(frame.locator('text=Monthly Meal Completion Summary').first).to_be_visible(timeout=1000)
         except AssertionError:
-            raise AssertionError("Test case failed: The reports page did not display the expected aggregated meal completion counts, weight changes, and scoring summaries for weekly and monthly views as required by the test plan.")
+            raise AssertionError("Test failed: Reports page did not display aggregated meal completion counts, weight changes, and scoring summaries correctly for weekly and monthly views as per the test plan.")
         await asyncio.sleep(5)
     
     finally:

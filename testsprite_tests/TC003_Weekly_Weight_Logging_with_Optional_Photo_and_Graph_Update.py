@@ -46,142 +46,107 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed towards the Weight page or next setup step.
+        # -> Click the 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button on the welcome page to proceed
+        # Click the 'Continuar' button to proceed with onboarding.
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a weight value into the weight input field and click 'Continuar' to proceed.
+        # -> Input a weight value (e.g., 150) and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input weight value 150 lb into the weight input field
+        # Input current weight value 150 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('150')
         
 
         frame = context.pages[-1]
+        # Click 'Continuar' button to proceed after entering weight
+        elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click the 'Continuar' button to proceed to the next onboarding step.
+        frame = context.pages[-1]
+        # Click the 'Continuar' button to proceed with onboarding.
+        elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click the 'Continuar' button to proceed to the next onboarding step.
+        frame = context.pages[-1]
         # Click the 'Continuar' button to proceed after entering weight
-        elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Click the 'Continuar' button to proceed to the next step towards the Weight page.
-        frame = context.pages[-1]
-        # Click the 'Continuar' button on the welcome page to proceed
-        elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Click the 'Continuar' button to submit the weight value and proceed to the next step where photo attachment and notes can be added.
-        frame = context.pages[-1]
-        # Click the 'Continuar' button to submit the weight value and proceed
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a goal weight value and click 'Continuar' to proceed.
+        # -> Input a target weight value (e.g., 180) and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input goal weight value 160 lb
+        # Input target weight value 180 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('160')
+        await page.wait_for_timeout(3000); await elem.fill('180')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering goal weight
+        # Click 'Continuar' button to proceed after entering target weight
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed after confirming the start date.
+        # -> Click the 'Continuar' button to proceed to the next onboarding step.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed after confirming the start date
+        # Click 'Continuar' button to proceed after confirming start date
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to complete the setup and proceed to the main weight tracking page where weight records can be added with photo and notes.
+        # -> Click the '¡Comenzar!' button to finish onboarding and enter the main app.
         frame = context.pages[-1]
-        # Click the '¡Comenzar!' button to complete setup and go to main weight tracking page
+        # Click the '¡Comenzar!' button to finish onboarding and enter the main app
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Peso' tab (index 15) to navigate to the weight records page.
+        # -> Click the 'Peso' tab in the bottom navigation to go to the Weight page.
         frame = context.pages[-1]
-        # Click the 'Peso' tab to go to the weight records page
+        # Click the 'Peso' tab in the bottom navigation to navigate to the Weight page
         elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Registrar Peso' button (index 2) to add a new weight record.
+        # -> Click the 'Registrar Peso (fuera de horario)' button to add a new weight record.
         frame = context.pages[-1]
-        # Click the 'Registrar Peso' button to add a new weight record
+        # Click the 'Registrar Peso (fuera de horario)' button to add a new weight record
         elem = frame.locator('xpath=html/body/main/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a new weight value, optionally attach a photo, add notes, and save the record.
+        # -> Click the notes button to open a notes input dialog or area, then input notes if possible, then save the record.
         frame = context.pages[-1]
-        # Input new weight value 155 lb
-        elem = frame.locator('xpath=html/body/main/div/div[5]/form/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('155')
-        
-
-        frame = context.pages[-1]
-        # Click 'Tomar foto' button to attach a photo (optional)
+        # Click the 'Tomar foto' button to optionally attach a photo
         elem = frame.locator('xpath=html/body/main/div/div[5]/form/div[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Skip photo attachment due to camera permission issue. Try clicking the notes field to focus it, then input notes. Finally, click 'Guardar' to save the weight record without photo.
+        # -> Click the notes area or button to open a notes input dialog or area, then input notes if possible, then save the record.
         frame = context.pages[-1]
-        # Click the notes input field to focus it
-        elem = frame.locator('xpath=html/body/nav/div/a').nth(0)
+        # Click the 'Tomar foto' button to attempt photo attachment (camera access denied)
+        elem = frame.locator('xpath=html/body/main/div/div/div[3]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Navigate back to the 'Peso' tab to retry adding a new weight record with weight value and notes, skipping photo attachment due to camera permission issues.
         frame = context.pages[-1]
-        # Click the 'Peso' tab to return to the weight records page
-        elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Click the 'Registrar Peso' button (index 2) to open the form to add a new weight record.
-        frame = context.pages[-1]
-        # Click the 'Registrar Peso' button to add a new weight record
-        elem = frame.locator('xpath=html/body/main/div/button').nth(0)
+        # Click the 'Guardar' button to save the new weight record without photo
+        elem = frame.locator('xpath=html/body/main/div/div[6]/form/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # --> Assertions to verify final state
         frame = context.pages[-1]
-        await expect(frame.locator('text=Registro de Peso').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=lunes, 12 de enero').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Peso Actual').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=150 lb').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Progreso hacia meta').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=160 lb').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=150 lb (inicio)').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=+0.0 lb ganadas').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Esta semana').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=+0.0 lb').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Faltan').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=10.0 lb').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Historial de Peso').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=No hay registros de peso aun').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Nuevo peso (lb)').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Foto de progreso (opcional)').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Tomar foto').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Notas (opcional)').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Cancelar').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Guardar').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Inicio').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Comidas').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Peso').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Reportes').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Ajustes').first).to_be_visible(timeout=30000)
+        try:
+            await expect(frame.locator('text=Weight Record Successfully Added').first).to_be_visible(timeout=1000)
+        except AssertionError:
+            raise AssertionError("Test case failed: The test plan execution failed to add a weekly weight record with photo and notes, and the weight progress graph did not update accordingly.")
         await asyncio.sleep(5)
     
     finally:

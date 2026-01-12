@@ -65,12 +65,22 @@ export function Onboarding({ onComplete }: OnboardingProps) {
 
   const canContinue = () => {
     switch (step) {
+      case 0:
+        return true;
       case 1:
-        return parseFloat(startWeight) > 0;
+        const start = parseFloat(startWeight);
+        return !isNaN(start) && start > 0 && start < 500;
       case 2:
-        return parseFloat(goalWeight) > parseFloat(startWeight);
+        const startW = parseFloat(startWeight);
+        const goalW = parseFloat(goalWeight);
+        return !isNaN(goalW) && goalW > startW && goalW < 500;
       case 3:
-        return startDate !== "";
+        // Validar que la fecha sea válida
+        if (!startDate) return false;
+        const dateObj = new Date(startDate);
+        return !isNaN(dateObj.getTime());
+      case 4:
+        return true;
       default:
         return true;
     }
@@ -147,9 +157,16 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   max="300"
                   value={startWeight}
                   onChange={(e) => setStartWeight(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && canContinue()) {
+                      setStep(step + 1);
+                    }
+                  }}
                   placeholder="Ej: 104"
                   className="text-2xl text-center h-16 pr-12"
                   autoFocus
+                  data-testid="input-start-weight"
+                  inputMode="decimal"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-lg">
                   lb
@@ -168,9 +185,16 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   max="300"
                   value={goalWeight}
                   onChange={(e) => setGoalWeight(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && canContinue()) {
+                      setStep(step + 1);
+                    }
+                  }}
                   placeholder="Ej: 135"
                   className="text-2xl text-center h-16 pr-12"
                   autoFocus
+                  data-testid="input-goal-weight"
+                  inputMode="decimal"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-lg">
                   lb
@@ -199,7 +223,13 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && canContinue()) {
+                    setStep(step + 1);
+                  }
+                }}
                 className="text-lg text-center h-14"
+                data-testid="input-start-date"
               />
               {startDate && (
                 <p className="text-center text-sm text-muted-foreground capitalize">
@@ -246,6 +276,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
               variant="outline"
               onClick={() => setStep(step - 1)}
               className="flex-1"
+              data-testid="onboarding-back"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Atrás
@@ -257,12 +288,19 @@ export function Onboarding({ onComplete }: OnboardingProps) {
               onClick={() => setStep(step + 1)}
               disabled={!canContinue()}
               className="flex-1"
+              data-testid="onboarding-continue"
+              type="button"
             >
               Continuar
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
           ) : (
-            <Button onClick={handleFinish} className="flex-1 bg-primary">
+            <Button
+              onClick={handleFinish}
+              className="flex-1 bg-primary"
+              data-testid="onboarding-finish"
+              type="button"
+            >
               ¡Comenzar!
               <Rocket className="h-4 w-4 ml-2" />
             </Button>

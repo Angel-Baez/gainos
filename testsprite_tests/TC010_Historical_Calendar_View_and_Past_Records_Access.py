@@ -46,16 +46,16 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed to the next step or main app interface.
+        # -> Click the 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button on the welcome page to proceed
+        # Click the 'Continuar' button on the welcome onboarding page
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a weight value and click 'Continuar' to proceed.
+        # -> Input current weight (e.g., 150) and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input weight value 150 in the weight input field
+        # Input current weight as 150 lbs
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('150')
         
@@ -66,23 +66,23 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to navigate to the next step or main app interface.
+        # -> Click the 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button on the welcome page to proceed
+        # Click the 'Continuar' button on the welcome onboarding page
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next step in the setup process.
+        # -> Click the 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
         # Click the 'Continuar' button to proceed from weight input step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a goal weight value and click 'Continuar' to proceed to the next step.
+        # -> Input goal weight (e.g., 180) and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input goal weight value 180 in the goal weight input field
+        # Input goal weight as 180 lbs
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('180')
         
@@ -93,16 +93,16 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed from the start date selection step.
+        # -> Click the 'Continuar' button to proceed with the selected start date.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the start date selection step
+        # Click the 'Continuar' button to proceed from start date selection
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to enter the main app interface and access the History page.
+        # -> Click the '¡Comenzar!' button to finish onboarding and enter the main app.
         frame = context.pages[-1]
-        # Click the '¡Comenzar!' button to enter the main app interface
+        # Click the '¡Comenzar!' button to finish onboarding and enter main app
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
@@ -114,19 +114,68 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Select a previous day on the calendar to verify that meal statuses and weight records are displayed correctly.
+        # -> Select a previous day on the calendar (e.g., January 7) to view its meal and weight records.
         frame = context.pages[-1]
-        # Select January 15, 2026 on the calendar as a previous day
-        elem = frame.locator('xpath=html/body/main/div/div[2]/div[3]/button[15]').nth(0)
+        # Select January 7 on the calendar to view meal and weight records for that day
+        elem = frame.locator('xpath=html/body/main/div/div[2]/div[3]/button[7]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Review the trend data and charts for historical progress on the History page.
+        await page.mouse.wheel(0, await page.evaluate('() => window.innerHeight'))
+        
+
+        # -> Click the 'Peso' tab to review weight records and trend data for historical progress.
+        frame = context.pages[-1]
+        # Click the 'Peso' tab to view weight records and trends
+        elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click the 'Registrar Peso (fuera de horario)' button to add a new weight record.
+        frame = context.pages[-1]
+        # Click 'Registrar Peso (fuera de horario)' button to add a new weight record
+        elem = frame.locator('xpath=html/body/main/div/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Input a new weight value (e.g., 152) and click 'Guardar' to save the weight record.
+        frame = context.pages[-1]
+        # Input new weight value as 152 lbs
+        elem = frame.locator('xpath=html/body/main/div/div[5]/form/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('152')
+        
+
+        frame = context.pages[-1]
+        # Click 'Guardar' button to save the new weight record
+        elem = frame.locator('xpath=html/body/main/div/div[5]/form/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # --> Assertions to verify final state
         frame = context.pages[-1]
-        try:
-            await expect(frame.locator('text=No Historical Data Available').first).to_be_visible(timeout=1000)
-        except AssertionError:
-            raise AssertionError("Test case failed: The History calendar view did not display past days, meal statuses, weight records, or trend charts as expected based on the test plan.")
+        await expect(frame.locator('text=Historial de Peso').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=12 ene').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=148').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=152 lb').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Peso Actual').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=152 lb').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Progreso hacia meta').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=180 lb').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=150 lb (inicio)').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=+2.0 lb ganadas').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Esta semana').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=+0.0 lb').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Faltan').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=28.0 lb').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Registrar Peso (fuera de horario)').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Registros Recientes').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=12 de enero').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Inicio').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Comidas').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Peso').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Reportes').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Ajustes').first).to_be_visible(timeout=30000)
         await asyncio.sleep(5)
     
     finally:

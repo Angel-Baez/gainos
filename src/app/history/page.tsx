@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { DAILY_CALORIES_TARGET, MEALS } from "@/lib/constants";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
@@ -58,10 +57,18 @@ export default function HistoryPage() {
     const dateStr = format(date, "yyyy-MM-dd");
     const dayMeals = monthMeals?.filter((m) => m.date === dateStr) ?? [];
     const completed = dayMeals.filter((m) => m.status === "completed").length;
-    return { completed, total: 8 };
+    const partial = dayMeals.filter((m) => m.status === "partial").length;
+    const skipped = dayMeals.filter((m) => m.status === "skipped").length;
+    return {
+      completed,
+      partial,
+      skipped,
+      total: 8,
+      hasAnyData: dayMeals.length > 0,
+    };
   };
 
-  // Actualizar estado de comida
+  // Actualizar estado de comida - ciclar entre estados
   const toggleMeal = async (mealNumber: number) => {
     if (!selectedDateStr) return;
 
@@ -69,8 +76,14 @@ export default function HistoryPage() {
     const meal = await db.meals.get(id);
 
     if (meal) {
-      const newStatus: MealStatus =
-        meal.status === "completed" ? "pending" : "completed";
+      // Ciclar: pending -> completed -> partial -> skipped -> pending
+      const statusCycle: Record<MealStatus, MealStatus> = {
+        pending: "completed",
+        completed: "partial",
+        partial: "skipped",
+        skipped: "pending",
+      };
+      const newStatus = statusCycle[meal.status];
       await db.meals.update(id, {
         status: newStatus,
         completedAt: newStatus === "completed" ? new Date() : undefined,
@@ -94,7 +107,35 @@ export default function HistoryPage() {
       ...MEALS[mealNumber - 1],
       status: dayMeal?.status ?? "pending",
       completedAt: dayMeal?.completedAt,
+      notes: dayMeal?.notes,
     };
+  };
+
+  // Helper para obtener estilo según estado
+  const getStatusStyle = (status: MealStatus) => {
+    switch (status) {
+      case "completed":
+        return "bg-primary/10 border border-primary/30";
+      case "partial":
+        return "bg-yellow-500/10 border border-yellow-500/30";
+      case "skipped":
+        return "bg-destructive/10 border border-destructive/30";
+      default:
+        return "bg-muted/50 hover:bg-muted";
+    }
+  };
+
+  const getStatusLabel = (status: MealStatus) => {
+    switch (status) {
+      case "completed":
+        return "✓";
+      case "partial":
+        return "½";
+      case "skipped":
+        return "✗";
+      default:
+        return "";
+    }
   };
 
   // Navegación
@@ -165,7 +206,8 @@ export default function HistoryPage() {
             const isSelected = selectedDate && isSameDay(day, selectedDate);
             const isToday = isSameDay(day, new Date());
             const isFuture = day > new Date();
-            const hasData = stats.completed > 0;
+            const hasData =
+              stats.completed > 0 || stats.partial > 0 || stats.skipped > 0;
 
             return (
               <button
@@ -193,6 +235,8 @@ export default function HistoryPage() {
                           ? "bg-green-500"
                           : stats.completed >= 4
                           ? "bg-yellow-500"
+                          : stats.skipped > 0
+                          ? "bg-red-500"
                           : "bg-orange-500"
                       )}
                     />
@@ -252,9 +296,15 @@ export default function HistoryPage() {
 
           {/* Lista de comidas */}
           <div className="space-y-2">
+            <p className="text-xs text-muted-foreground mb-2">
+              Toca una comida para cambiar su estado (pendiente → completada →
+              parcial → saltada)
+            </p>
             {MEALS.map((meal) => {
               const mealInfo = getMealInfo(meal.number);
               const isCompleted = mealInfo.status === "completed";
+              const isSkipped = mealInfo.status === "skipped";
+              const isPartial = mealInfo.status === "partial";
 
               return (
                 <div
@@ -270,20 +320,32 @@ export default function HistoryPage() {
                   }}
                   className={cn(
                     "w-full flex items-center gap-3 p-3 rounded-lg transition-all cursor-pointer",
-                    isCompleted
-                      ? "bg-primary/10 border border-primary/30"
-                      : "bg-muted/50 hover:bg-muted"
+                    getStatusStyle(mealInfo.status)
                   )}
                 >
-                  <Checkbox
-                    checked={isCompleted}
-                    className="h-5 w-5 pointer-events-none"
-                  />
+                  <div
+                    className={cn(
+                      "h-5 w-5 rounded border-2 flex items-center justify-center text-xs font-bold",
+                      isCompleted &&
+                        "bg-primary border-primary text-primary-foreground",
+                      isPartial &&
+                        "bg-yellow-500 border-yellow-500 text-yellow-900",
+                      isSkipped &&
+                        "bg-destructive border-destructive text-destructive-foreground",
+                      !isCompleted &&
+                        !isPartial &&
+                        !isSkipped &&
+                        "border-muted-foreground/30"
+                    )}
+                  >
+                    {getStatusLabel(mealInfo.status)}
+                  </div>
                   <div className="flex-1 text-left">
                     <p
                       className={cn(
                         "text-sm font-medium",
-                        isCompleted && "line-through text-muted-foreground"
+                        (isCompleted || isSkipped) &&
+                          "line-through text-muted-foreground"
                       )}
                     >
                       {meal.name}
@@ -294,9 +356,25 @@ export default function HistoryPage() {
                         {meal.time}
                       </span>
                       <span>{meal.calories} cal</span>
+                      {mealInfo.notes && (
+                        <span className="italic truncate max-w-25">
+                          &quot;{mealInfo.notes}&quot;
+                        </span>
+                      )}
                     </div>
                   </div>
-                  <span className="text-xs font-medium text-muted-foreground">
+                  <span
+                    className={cn(
+                      "text-xs font-medium px-2 py-0.5 rounded-full",
+                      isCompleted && "bg-primary/20 text-primary",
+                      isPartial && "bg-yellow-500/20 text-yellow-600",
+                      isSkipped && "bg-destructive/20 text-destructive",
+                      !isCompleted &&
+                        !isPartial &&
+                        !isSkipped &&
+                        "text-muted-foreground"
+                    )}
+                  >
                     #{meal.number}
                   </span>
                 </div>

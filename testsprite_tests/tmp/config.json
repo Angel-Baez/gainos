@@ -7,10 +7,10 @@
     "projectName": "gainos",
     "projectPath": "/Users/macbook/Documents/Proyectos/gainos",
     "testIds": [],
-    "additionalInstruction": "",
+    "additionalInstruction": "Focus on verifying the fixes: meal status changes (pending/completed/partial/skipped), notes functionality, history page data display, onboarding flow, and PWA install prompt",
     "envs": {
       "API_KEY": "sk-user-4o7vamVc5JFAzdCrdlD4jyxPnaoYKfRWjNz3p38BsFuSEgJZuvSRg9yovEKWHicYmQyc5DwDa_WUgnapqxOwsVVIajcuKwHlKRxc4WvqBbrrMUJJNN7cyS9Q8tNK7hXBgIM"
     }
   },
-  "proxy": "http://7afe97f2-705b-456e-adef-7c3f7c2bffeb:ts2mlkPbXS8xx3032m9woPS756Rdv1rd@tun.testsprite.com:8080"
+  "proxy": "http://5d73cefd-8da4-40be-9e6b-99536a903f52:h1xYLQ5DM8skVM3JmomEWTRXF3Zd9r99@tun.testsprite.com:8080"
 }

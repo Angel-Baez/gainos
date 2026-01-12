@@ -14,133 +14,144 @@
 
 #### Test TC001 Daily Meal Tracking with All Statuses
 - **Test Code:** [TC001_Daily_Meal_Tracking_with_All_Statuses.py](./TC001_Daily_Meal_Tracking_with_All_Statuses.py)
-- **Test Error:** The Meals page allows toggling the status of each of the 8 daily meals only to 'completed' by clicking on the meal. There are no visible options or UI elements to set the status to 'pending' (default), 'skipped', or 'partial', nor to add or save notes for any meal. Therefore, the task to verify all statuses and note addition cannot be fully completed. The issue has been reported.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/75e32f0b-09a8-44d5-9008-6a28b2e78b28
+- **Test Error:** The verification of meal status changes (pending, completed, skipped) and notes addition has been partially completed for multiple meals. The UI correctly updates statuses with visual indicators and progress updates. However, the full cycle including setting all statuses (including partial), adding notes for all 8 meals, and verifying persistence after page reload has not been fully completed. Further testing is needed to cover all statuses and persistence. Task is not fully finished yet.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/6a9c64cd-b00f-408f-8d5c-e1a8e37379b9
 - **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC002 Dashboard Progress Ring Updates with Meal Status
 - **Test Code:** [TC002_Dashboard_Progress_Ring_Updates_with_Meal_Status.py](./TC002_Dashboard_Progress_Ring_Updates_with_Meal_Status.py)
-- **Test Error:** The task to check the progress ring on the Dashboard for meal completion could not be completed because the setup process is stuck at step 3 of 5. The 'Continuar' button to proceed was visible but not interactable by index, and attempts to submit the form by pressing Enter failed to advance the page. Therefore, the Meals page and Dashboard were not accessible to mark meals as completed or verify the progress ring. Task incomplete.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/cd21e839-ddb4-4518-a165-8224c701da1f
+- **Test Error:** The task to verify that the progress ring on the Dashboard accurately reflects the number of completed meals out of 8 each day and updates in real time as meal statuses change could not be fully completed. There were significant UI interaction issues on the Meals page, specifically with the 'Más opciones' and 'Completada' buttons, which prevented reliably marking meals as completed. Consequently, the progress ring verification on the Dashboard could not be conclusively performed. Recommend addressing these UI issues before retesting.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/27a1f483-2358-4434-a57d-0a559c946a0f
 - **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC003 Weekly Weight Logging with Optional Photo and Graph Update
 - **Test Code:** [TC003_Weekly_Weight_Logging_with_Optional_Photo_and_Graph_Update.py](./TC003_Weekly_Weight_Logging_with_Optional_Photo_and_Graph_Update.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/ce80783b-f23d-4f91-8e48-18932c625daa
-- **Status:** ✅ Passed
+- **Test Error:** Tested adding a new weight record with weight value 155 lb, attempted photo attachment but camera access was denied, and notes input was not accessible. The record could not be saved as the page remained unchanged with an error message about camera permissions. This is a critical issue blocking the core functionality of adding weight records with photos and notes. Task stopped due to this issue.
+Browser Console Logs:
+[ERROR] Error accessing camera: NotFoundError: Requested device not found (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:3127:31)
+[ERROR] Error accessing camera: NotFoundError: Requested device not found (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:3127:31)
+[ERROR] Error accessing camera: NotFoundError: Requested device not found (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:3127:31)
+[ERROR] Error accessing camera: NotFoundError: Requested device not found (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:3127:31)
+[WARNING] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(200) or minHeight(192) or use aspect(undefined) to control the
+       height and width. (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:2297:27)
+[WARNING] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(200) or minHeight(192) or use aspect(undefined) to control the
+       height and width. (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:2297:27)
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/be708ccc-83cb-4c99-afd9-9da2d6aeb79c
+- **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC004 Weekly Meal Prep Checklist Completion and Reset
 - **Test Code:** [TC004_Weekly_Meal_Prep_Checklist_Completion_and_Reset.py](./TC004_Weekly_Meal_Prep_Checklist_Completion_and_Reset.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/5d09b6ba-dda1-4c5a-a3ae-a8647367f497
-- **Status:** ✅ Passed
+- **Test Error:** Verified that the meal prep checklist can be marked completed on Sundays and saves correctly with timestamp. However, the checklist does not reset to not completed for the new week after simulating advancing the date and navigating back. This is a bug in the weekly reset functionality. Task is stopped and issue reported.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/55454f73-4c2f-4fbb-9fed-b0068d969379
+- **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC005 Daily Backpack Checklist Functionality and Reset
 - **Test Code:** [TC005_Daily_Backpack_Checklist_Functionality_and_Reset.py](./TC005_Daily_Backpack_Checklist_Functionality_and_Reset.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/e2398f65-b909-4100-84a1-0b0c56ecbc40
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/f5979274-f857-4ead-a593-a3e30f9e9eec
 - **Status:** ✅ Passed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC006 Weekly Score Calculation Accuracy
 - **Test Code:** [TC006_Weekly_Score_Calculation_Accuracy.py](./TC006_Weekly_Score_Calculation_Accuracy.py)
-- **Test Error:** Partial validation completed: 6 out of 56 meals marked completed today, with progress bar showing 75% calories consumed for the day. Meal prep, tracking consistency, and weight progress have not yet been completed or logged. The weekly scoring system's total score calculation up to 100 points based on meals (50 pts), meal prep (20 pts), tracking consistency (15 pts), and weight progress (15 pts) cannot be fully validated yet. Further steps are needed to complete all meals, meal prep items, tracking consistency, and weight progress to confirm the scoring aggregation and ensure it does not exceed 100 points.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/220de5ec-2052-4f73-abe2-46bfc3fff69e
+- **Test Error:** The weekly scoring system test started with onboarding completion and navigation to the main dashboard. We completed 3 meals with varied statuses: 2 completed and 1 skipped, updating progress and calories accordingly. The meal prep, tracking consistency, and weight progress steps have not been completed yet, so the weekly score aggregation and capping at 100 points cannot be fully validated at this time. Further steps are needed to complete all 56 meals, meal prep items, maintain tracking consistency, and log weight progress to fully validate the scoring system.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/231e39bf-d8d1-4c1c-b26c-11e66d1e4ce9
 - **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC007 Offline Functionality and Data Persistence
 - **Test Code:** [TC007_Offline_Functionality_and_Data_Persistence.py](./TC007_Offline_Functionality_and_Data_Persistence.py)
-- **Test Error:** Offline capabilities test partially completed. Meals and weight records were added with network connected. However, the checklist completions section is inaccessible, preventing full test completion. Please fix the navigation or provide access to checklist completions to continue testing.
+- **Test Error:** The app onboarding was completed successfully, and initial data entries were made with network connected: 1 meal marked completed, weight record added at 155 lb, and checklist completions pending. The UI updated correctly reflecting these changes. Navigation through main sections including meals, weight, reports, and dashboard was smooth. However, the offline testing steps including disabling network, verifying data availability offline, adding new data offline, and confirming local data persistence have not been performed yet. Therefore, the task is not fully finished.
 Browser Console Logs:
 [WARNING] The width(-1) and height(-1) of chart should be greater than 0,
        please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       or add a minWidth(200) or minHeight(192) or use aspect(undefined) to control the
        height and width. (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:2297:27)
 [WARNING] The width(-1) and height(-1) of chart should be greater than 0,
        please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       or add a minWidth(200) or minHeight(192) or use aspect(undefined) to control the
        height and width. (at http://localhost:3000/_next/static/chunks/1629d_next_dist_9e7c62d6._.js:2297:27)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/c2435487-17b5-4e15-8159-dc49ab6649df
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/0aad8e89-0d8a-46d8-8009-a7c2590ccc5f
 - **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC008 PWA Installability and Service Worker Caching
 - **Test Code:** [TC008_PWA_Installability_and_Service_Worker_Caching.py](./TC008_PWA_Installability_and_Service_Worker_Caching.py)
-- **Test Error:** The app supports installation as a PWA in theory, but the PWA installation prompt did not appear automatically during onboarding or on the main dashboard. No visible install options or instructions were found in the UI. Attempts to trigger the prompt by navigating and refreshing the main page were unsuccessful. Offline functionality and service worker caching were not explicitly verified by simulating offline mode due to environment limitations. Further manual testing with browser developer tools to trigger the 'beforeinstallprompt' event and offline testing on a real device is recommended to fully confirm PWA installation and offline support.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/9f85754c-0bc3-4846-a955-ac8c034e9ca0
-- **Status:** ❌ Failed
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/2bec4ad2-ff2c-4e98-9ff0-6971a144aa1c
+- **Status:** ✅ Passed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC009 Reports Weekly and Monthly Data Accuracy
 - **Test Code:** [TC009_Reports_Weekly_and_Monthly_Data_Accuracy.py](./TC009_Reports_Weekly_and_Monthly_Data_Accuracy.py)
-- **Test Error:** The task to verify the reports page displaying aggregated meal completion counts, weight changes, and scoring summaries for weekly and monthly views has been partially completed. Initial setup steps, meal completions for one day, and navigation to the weight registration page have been successfully performed. However, multiple weeks of meal and weight entries are required to fully verify the aggregation and scoring summaries on the reports page. Therefore, the task is not yet fully finished.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/3180b3bf-946e-4cbb-976e-31b981e1a644
+- **Test Error:** The onboarding process was completed successfully. Meal completion data for the current day was partially entered with 4 out of 8 meals marked as completed. The weight entry page is ready for new weight input, but no weight entries or multiple days/weeks of data have been entered yet. Therefore, the reports page verification for weekly and monthly aggregated meal completion counts, weight changes, and scoring summaries is not yet possible. Additional data entry over several weeks is required to fully verify the reports page as requested.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/792b5c84-aa0a-4cc3-9b2c-0015e23205d7
 - **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC010 Historical Calendar View and Past Records Access
 - **Test Code:** [TC010_Historical_Calendar_View_and_Past_Records_Access.py](./TC010_Historical_Calendar_View_and_Past_Records_Access.py)
-- **Test Error:** The History calendar view shows past days and allows selecting a day, but it fails to display the meal statuses, weight records, and trend charts for the selected day. This is a critical issue preventing full verification of the feature. Task stopped due to this issue.
-Browser Console Logs:
-[ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE (at http://localhost:3000/__nextjs_font/geist-latin.woff2:0:0)
-[ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE (at http://localhost:3000/__nextjs_original-stack-frames:0:0)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/6d158d16-23e8-4d57-8fb5-40f27c02bfe1
-- **Status:** ❌ Failed
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/7727891c-0d6b-4bb8-b519-7e75f3262d69
+- **Status:** ✅ Passed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC011 User Settings Persistence and Effect
 - **Test Code:** [TC011_User_Settings_Persistence_and_Effect.py](./TC011_User_Settings_Persistence_and_Effect.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/82aee49e-f491-47ab-8627-83ebd2d604fb
-- **Status:** ✅ Passed
+- **Test Error:** Onboarding navigation bug blocks access to settings. Cannot proceed with user settings persistence validation. Reporting issue and stopping further actions.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/d36b27fc-a9e5-44b1-8224-4a7159f348d3
+- **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC012 Error Handling on Invalid Weight Entry
 - **Test Code:** [TC012_Error_Handling_on_Invalid_Weight_Entry.py](./TC012_Error_Handling_on_Invalid_Weight_Entry.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/5683100a-108a-42bc-aaca-2bef51b860fa
-- **Status:** ✅ Passed
+- **Test Error:** The task to ensure the app prevents invalid weight inputs (empty, negative, zero, non-numeric) and shows appropriate error messages was not fully completed. The user navigated back to the welcome page multiple times without testing invalid inputs on the weight input page. Therefore, validation behavior and error messages for invalid weight inputs remain unverified. Task ended without full verification.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/4aeb9564-5015-4a01-95b7-47d8ba7c4d42
+- **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC013 Meal Status Change from Completed Back to Pending
 - **Test Code:** [TC013_Meal_Status_Change_from_Completed_Back_to_Pending.py](./TC013_Meal_Status_Change_from_Completed_Back_to_Pending.py)
-- **Test Error:** The task to verify that users can revert a meal's status from completed back to pending and that all related UI elements update accordingly has been successfully completed. The meal 'Batida Matutina' was marked completed and then reverted to pending, with the UI reflecting these changes correctly. However, the ability to test reverting from skipped or partial statuses to pending could not be confirmed as no UI controls for these statuses were found. Therefore, the task is partially complete with success=false.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/db264b96-9b71-4ec9-beb2-997d5655ebdb
-- **Status:** ❌ Failed
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/7fbb2786-eb08-4c0e-a96d-544b9b1011c5
+- **Status:** ✅ Passed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC014 App Navigation via Bottom Navigation Bar
 - **Test Code:** [TC014_App_Navigation_via_Bottom_Navigation_Bar.py](./TC014_App_Navigation_via_Bottom_Navigation_Bar.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/f73b9bfe-117b-4f2d-a448-c2766cc4d010
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/5a9560f4-2616-40de-90a9-d5cb03f8d4fb
 - **Status:** ✅ Passed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC015 Visual Feedback and Responsiveness for Meal Actions
 - **Test Code:** [TC015_Visual_Feedback_and_Responsiveness_for_Meal_Actions.py](./TC015_Visual_Feedback_and_Responsiveness_for_Meal_Actions.py)
-- **Test Error:** The UI on the Meals page provides immediate and clear visual feedback when users mark meal statuses as completed, including checkmarks, strikethrough text, and updated progress bar and calorie count. The UI remains responsive and visually consistent on mobile devices under varying screen sizes. However, the testing for adding notes and verifying their immediate visual feedback and responsiveness on different screen sizes was not fully completed. Further testing is recommended to ensure notes addition also triggers immediate and clear UI feedback without layout issues.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/4adf1469-740f-4002-81ce-8b384cca9a8e
+- **Test Error:** The task to ensure immediate and clear visual feedback on meal status changes and notes addition on mobile devices under varying screen sizes is partially completed. We verified that meal status changes (completed, pending) and notes addition provide immediate visual feedback and the UI remains responsive and stable on the current tested mobile screen size. However, testing on multiple device sizes/emulators is still pending to fully confirm responsiveness and layout stability across all mobile screen sizes. Please consider further testing on additional device sizes to fully complete the task.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/e61231c1-c58f-428c-99b2-f35d98d0eae2
 - **Status:** ❌ Failed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
 
 #### Test TC016 Security: Local Data Storage Only Without External Transmission
 - **Test Code:** [TC016_Security_Local_Data_Storage_Only_Without_External_Transmission.py](./TC016_Security_Local_Data_Storage_Only_Without_External_Transmission.py)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/102630b1-c32a-4b6b-8fb7-d5572e02b3f5/4b4a91ec-3b9e-4cd7-993c-7a093343e5f3
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/fa165eff-dcf5-485c-a8e4-3355701c00b1/9aa53c8e-c972-4110-a67f-642a615d4ed8
 - **Status:** ✅ Passed
 - **Analysis / Findings:** {{TODO:AI_ANALYSIS}}.
 ---
@@ -148,7 +159,7 @@ Browser Console Logs:
 
 ## 3️⃣ Coverage & Matching Metrics
 
-- **43.75** of tests passed
+- **37.50** of tests passed
 
 | Requirement        | Total Tests | ✅ Passed | ❌ Failed  |
 |--------------------|-------------|-----------|------------|

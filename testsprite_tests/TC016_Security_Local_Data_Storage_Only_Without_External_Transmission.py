@@ -46,118 +46,168 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed to the next step of the app setup.
+        # -> Click 'Continuar' to proceed with onboarding
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the welcome page
+        # Click 'Continuar' button on onboarding welcome page
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a sample weight value and click 'Continuar' to proceed to the next step.
+        # -> Input weight value and click 'Continuar' to proceed
         frame = context.pages[-1]
-        # Input sample weight value 150 lb
+        # Input weight value 150 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('150')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering weight
+        # Click 'Continuar' button to proceed to next onboarding step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed with the user operations and monitor network requests for any external data transmission.
+        # -> Click 'Continuar' to proceed with onboarding and monitor network requests for data transmission
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the welcome page
+        # Click 'Continuar' button on onboarding welcome page
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next step and continue user operations while monitoring network requests.
+        # -> Click 'Continuar' to proceed with onboarding and monitor network requests for any external data transmission
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the weight input step
+        # Click 'Continuar' button to proceed to next onboarding step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a sample goal weight value and click 'Continuar' to proceed to the next step.
+        # -> Input goal weight and click 'Continuar' to proceed with onboarding and monitor network requests for any external data transmission
         frame = context.pages[-1]
-        # Input sample goal weight value 180 lb
+        # Input goal weight 160 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('180')
+        await page.wait_for_timeout(3000); await elem.fill('160')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering goal weight
+        # Click 'Continuar' button to proceed to next onboarding step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next step after confirming the start date.
+        # -> Click 'Continuar' to proceed with onboarding and monitor network requests for any external data transmission
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the start date selection step
+        # Click 'Continuar' button to proceed to next onboarding step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to start the main app functionality and begin monitoring network requests for any external data transmission of personal data.
+        # -> Click '¡Comenzar!' to finish onboarding and enter main app. Monitor network requests for any external data transmission.
         frame = context.pages[-1]
-        # Click the '¡Comenzar!' button to start main app functionality and begin monitoring network requests
+        # Click '¡Comenzar!' button to finish onboarding and enter main app
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on 'Comidas' to perform meal tracking operation and monitor network requests for any external data transmission.
+        # -> Click on 'Comidas' to start meal tracking operations and monitor network requests for any data transmission.
         frame = context.pages[-1]
-        # Click on 'Comidas' to perform meal tracking operation
+        # Click 'Comidas' to open meal tracking page
         elem = frame.locator('xpath=html/body/nav/div/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Mark the first meal 'Batida Matutina' as completed and monitor network requests for any external data transmission.
+        # -> Click 'Más opciones' for the first meal (Batida Matutina) to change meal status and add notes, monitoring network requests.
         frame = context.pages[-1]
-        # Mark the first meal 'Batida Matutina' as completed
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div').nth(0)
+        # Click 'Más opciones' for the first meal (Batida Matutina)
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div/div[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Navigate to the 'Peso' section to log a new weight entry and monitor network requests for any external data transmission.
+        # -> Click 'Completada' to mark the first meal as completed and monitor network requests for any data transmission.
         frame = context.pages[-1]
-        # Click on 'Peso' to navigate to weight logging section
-        elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
+        # Click 'Completada' to mark the first meal as completed
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div/div[3]/div/div/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Registrar Peso' button to log a new weight entry and monitor network requests for any external data transmission.
+        # -> Click 'Más opciones' for the second meal (Desayuno Solido) to test meal status changes and notes addition, monitoring network requests.
         frame = context.pages[-1]
-        # Click the 'Registrar Peso' button to log a new weight entry
-        elem = frame.locator('xpath=html/body/main/div/button').nth(0)
+        # Click 'Más opciones' for the second meal (Desayuno Solido)
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[2]/div/div[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a new weight value (e.g., 155) into the 'Nuevo peso' field and click 'Guardar' to save the entry and monitor network requests.
+        # -> Click 'Saltada' to mark the second meal as skipped and monitor network requests for any data transmission.
         frame = context.pages[-1]
-        # Input new weight value 155 lb
-        elem = frame.locator('xpath=html/body/main/div/div[5]/form/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('155')
-        
-
-        frame = context.pages[-1]
-        # Click 'Guardar' button to save the new weight entry
-        elem = frame.locator('xpath=html/body/main/div/div[5]/form/div[4]/button[2]').nth(0)
+        # Click 'Saltada' to mark the second meal as skipped
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[2]/div/div[3]/div/div/button[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on 'Ajustes' to navigate to settings and then proceed to complete a checklist item to monitor network requests for any external data transmission.
+        # -> Click 'Más opciones' for the third meal (Snack Media Manana) to test notes addition and meal status changes, monitoring network requests.
         frame = context.pages[-1]
-        # Click on 'Ajustes' to navigate to settings
-        elem = frame.locator('xpath=html/body/nav/div/a[5]').nth(0)
+        # Click 'Más opciones' for the third meal (Snack Media Manana)
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[3]/div/div[2]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click 'Agregar notas' to add a note to the third meal and monitor network requests for any data transmission.
+        frame = context.pages[-1]
+        # Click 'Agregar notas' to add a note to the third meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[3]/div/div[3]/div[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # --> Assertions to verify final state
         frame = context.pages[-1]
-        await expect(frame.locator('text=Tus datos se guardan localmente en tu dispositivo').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Comidas de Hoy').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Lunes, 12 De Enero').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Progreso del dia').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=1/8 comidas').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Calorias: 500 / 4,050').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=13%').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=1 saltadas').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Batida Matutina').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Leche, avena, mantequilla de mani, guineo, miel').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=06:30').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=500 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Más opciones').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Desayuno Solido').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=3 huevos, pan con mantequilla de mani, fruta, mani').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=09:30').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=600 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Snack Media Manana').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Sandwich jamon y queso, yogurt').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=11:30').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=300 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Almuerzo Principal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Arroz, proteina, habichuelas, platano, aguacate').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=13:00').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=900 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Merienda Tarde').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Pan con queso/jamon, leche, fruta').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=16:00').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=400 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Pre-Cena').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Batida rapida o huevos con pan').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=19:00').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=350 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Cena Principal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Mangu completo o sobras del almuerzo').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=21:30').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=700 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Batida Nocturna').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Leche, avena, miel - antes de dormir').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=22:30').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=300 cal').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Pendiente').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Completada').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Saltada').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Parcial').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Ocultar notas').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Inicio').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Comidas').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Peso').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Reportes').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Ajustes').first).to_be_visible(timeout=30000)
         await asyncio.sleep(5)
     
     finally:

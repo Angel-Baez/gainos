@@ -46,14 +46,14 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed to the Meals page or next step.
+        # -> Click the 'Continuar' button to proceed to the next step in onboarding or navigation towards the Meals page.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from the welcome page
+        # Click the 'Continuar' button on the welcome page to proceed
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a weight value and click 'Continuar' to proceed to the next step.
+        # -> Input a valid weight value and click 'Continuar' to proceed to the next onboarding step or page.
         frame = context.pages[-1]
         # Input current weight as 150 lbs
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
@@ -66,75 +66,120 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to navigate to the Meals page.
+        # -> Click the 'Continuar' button to proceed towards the Meals page or next onboarding step.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to navigate to the Meals page
+        # Click the 'Continuar' button on the onboarding welcome page to proceed
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next step in the onboarding process.
+        # -> Click the 'Continuar' button to proceed to the next onboarding step or page.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed from weight input step
+        # Click the 'Continuar' button to proceed from weight input step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a goal weight value and click 'Continuar' to proceed to the next step.
+        # -> Input a target weight value and click 'Continuar' to proceed to the next onboarding step.
         frame = context.pages[-1]
-        # Input goal weight as 180 lbs
+        # Input target weight as 180 lbs
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('180')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering goal weight
+        # Click 'Continuar' button to proceed after entering target weight
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the final step and reach the Meals page.
+        # -> Click the 'Continuar' button to proceed to the next onboarding step or Meals page.
         frame = context.pages[-1]
         # Click 'Continuar' button to proceed from start date selection step
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to finish onboarding and navigate to the Meals page.
+        # -> Click the '¡Comenzar!' button to complete onboarding and navigate to the main app, aiming to reach the Meals page.
         frame = context.pages[-1]
-        # Click '¡Comenzar!' button to finish onboarding and go to Meals page
+        # Click the '¡Comenzar!' button to complete onboarding and enter the main app
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Comidas' tab in the navigation bar to access the detailed meals list for status updates.
+        # -> Click the 'Comidas' tab to navigate to the Meals page and begin meal status and notes testing.
         frame = context.pages[-1]
-        # Click the 'Comidas' tab in the navigation bar to open the detailed meals list
+        # Click the 'Comidas' tab to navigate to the Meals page
         elem = frame.locator('xpath=html/body/nav/div/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the first meal (Batida Matutina) to open its details for status update and note addition.
+        # -> For each of the 8 meals, click 'Más opciones', set status to 'completed', add a note, and save the changes.
         frame = context.pages[-1]
-        # Click on the first meal 'Batida Matutina' to open details
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div').nth(0)
+        # Click 'Más opciones' for meal 1 (Batida Matutina) to open status and notes options
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div/div[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Look for any UI elements or buttons near each meal that allow editing notes or changing status to skipped or partial.
-        await page.mouse.wheel(0, 200)
+        # -> Click the 'Completada' button to set the meal status to completed, then click 'Agregar notas' to add a note.
+        frame = context.pages[-1]
+        # Click 'Completada' to set status to completed for the first meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div/div[3]/div/div/button[2]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Look for any buttons, icons, or menu options near each meal that allow editing notes or changing status to skipped or partial.
-        await page.mouse.wheel(0, 300)
+        frame = context.pages[-1]
+        # Click 'Agregar notas' to add a note for the first meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[4]/div/div').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click 'Más opciones' for the second meal to set status to completed and add a note.
+        frame = context.pages[-1]
+        # Click 'Más opciones' for the second meal (Desayuno Solido) to open status and notes options
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[2]/div/div[2]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click the 'Completada' button to set the second meal status to completed, then click 'Agregar notas' to add a note.
+        frame = context.pages[-1]
+        # Click 'Completada' to set status to completed for the second meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[2]/div/div[3]/div/div/button[2]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        frame = context.pages[-1]
+        # Click 'Agregar notas' to add a note for the second meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[5]/div/div').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click 'Más opciones' for the third meal to set status and add a note.
+        frame = context.pages[-1]
+        # Click 'Más opciones' for the third meal (Snack Media Manana) to open status and notes options
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[3]/div/div[2]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Click the 'Saltada' button to set the third meal status to skipped, then click 'Agregar notas' to add a note.
+        frame = context.pages[-1]
+        # Click 'Saltada' to set status to skipped for the third meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[3]/div/div[3]/div/div/button[3]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        frame = context.pages[-1]
+        # Click 'Agregar notas' to add a note for the third meal
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div[6]/div/div[2]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # --> Assertions to verify final state
         frame = context.pages[-1]
         try:
-            await expect(frame.locator('text=Meal status updated successfully').first).to_be_visible(timeout=1000)
+            await expect(frame.locator('text=Meal Status Updated Successfully').first).to_be_visible(timeout=1000)
         except AssertionError:
-            raise AssertionError("Test case failed: The test plan execution failed to verify that users can mark each of the 8 daily meals with statuses (pending, completed, skipped, partial) and add/save notes. The expected status update confirmation 'Meal status updated successfully' was not found on the page.")
+            raise AssertionError("Test case failed: The test plan execution has failed because the meal statuses (pending, completed, skipped, partial) and notes functionality could not be verified as working correctly. Please check the meal status updates and note saving features.")
         await asyncio.sleep(5)
     
     finally:

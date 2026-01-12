@@ -46,14 +46,14 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed towards the Backpack page.
+        # -> Click the 'Continuar' button to proceed with onboarding and reach the main app interface.
         frame = context.pages[-1]
-        # Click the 'Continuar' button on the welcome page to proceed
+        # Click the 'Continuar' button on the welcome screen to proceed.
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a weight value and click 'Continuar' to proceed with onboarding towards the Backpack page.
+        # -> Input a weight value and click 'Continuar' to proceed with onboarding.
         frame = context.pages[-1]
         # Input weight value 150 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
@@ -66,123 +66,129 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed towards the Backpack page.
+        # -> Click the 'Continuar' button to proceed with onboarding and eventually reach the main app interface.
         frame = context.pages[-1]
-        # Click the 'Continuar' button on the welcome page to proceed
+        # Click the 'Continuar' button on the welcome screen to proceed.
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # -> Click the 'Continuar' button to proceed to the next onboarding step.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from weight input step
+        # Click 'Continuar' button to proceed with onboarding after entering weight
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a goal weight value and click 'Continuar' to proceed towards the Backpack page.
+        # -> Input a target weight value and click 'Continuar' to proceed with onboarding.
         frame = context.pages[-1]
-        # Input goal weight value 180 lb
+        # Input target weight value 160 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('180')
+        await page.wait_for_timeout(3000); await elem.fill('160')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering goal weight
+        # Click 'Continuar' button to proceed after entering target weight
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next onboarding step towards the Backpack page.
+        # -> Click the 'Continuar' button to proceed to the final onboarding step.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed from start date selection step
+        # Click 'Continuar' button to proceed with onboarding after selecting start date
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to finish onboarding and navigate to the Backpack page.
+        # -> Click the '¡Comenzar!' button to finish onboarding and enter the main app interface.
         frame = context.pages[-1]
-        # Click the '¡Comenzar!' button to finish onboarding and go to Backpack page
+        # Click '¡Comenzar!' button to finish onboarding and enter main app interface
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the 'Mochila' section to open the daily backpack checklist.
+        # -> Click on the 'Mochila' (Backpack) tab to open the checklist page and verify checklist items.
         frame = context.pages[-1]
-        # Click on the 'Mochila' section to open the daily backpack checklist
+        # Click on 'Mochila' (Backpack) tab to open the checklist page
         elem = frame.locator('xpath=html/body/main/div/div[4]/a[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Mark each checklist item (sandwiches, fruits, nuts, yogurts, water, peanut butter) as packed for the current day.
+        # -> Mark each of the 6 checklist items (sandwiches, fruits, nuts, yogurts, water, peanut butter) as packed by clicking their respective checkboxes.
         frame = context.pages[-1]
-        # Check the checkbox for sandwiches
+        # Check the checkbox for '2 sandwiches'
         elem = frame.locator('xpath=html/body/main/div/div[4]/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         frame = context.pages[-1]
-        # Check the checkbox for fruits
+        # Check the checkbox for '2 frutas'
         elem = frame.locator('xpath=html/body/main/div/div[4]/div[2]/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         frame = context.pages[-1]
-        # Check the checkbox for nuts
+        # Check the checkbox for '2 bolsitas mani'
         elem = frame.locator('xpath=html/body/main/div/div[4]/div[3]/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         frame = context.pages[-1]
-        # Check the checkbox for yogurts
+        # Check the checkbox for '2 yogurts'
         elem = frame.locator('xpath=html/body/main/div/div[4]/div[4]/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         frame = context.pages[-1]
-        # Check the checkbox for water
+        # Check the checkbox for '1 botella agua'
         elem = frame.locator('xpath=html/body/main/div/div[4]/div[5]/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         frame = context.pages[-1]
-        # Check the checkbox for peanut butter
+        # Check the checkbox for '1 pote mantequilla de mani'
         elem = frame.locator('xpath=html/body/main/div/div[4]/div[6]/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # -> Simulate a day change to the next day and verify that the checklist resets with all items unchecked.
-        await page.goto('http://localhost:3000/backpack?date=2026-01-13', timeout=10000)
+        await page.goto('http://localhost:3000/backpack', timeout=10000)
         await asyncio.sleep(3)
         
 
-        # -> Verify the displayed date on the page and try to simulate day change differently or reload the page to reflect the new date and reset checklist.
+        # -> Simulate a day change to the next day by changing the system date or using app controls, then reload the Backpack page to verify if checklist resets with all items unchecked.
+        await page.goto('http://localhost:3000/ajustes', timeout=10000)
+        await asyncio.sleep(3)
+        
+
+        await page.goto('http://localhost:3000/backpack', timeout=10000)
+        await asyncio.sleep(3)
+        
+
+        # -> Return to the main dashboard or backpack page to check for any other UI elements or options to simulate day change or reset checklist.
         frame = context.pages[-1]
-        # Click 'Inicio' to navigate away and back to refresh the page state
+        # Click 'Inicio' tab to return to main dashboard
         elem = frame.locator('xpath=html/body/nav/div/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the 'Mochila' section to open the daily backpack checklist and verify if items are still checked or reset.
+        # -> Click on the 'Mochila' (Backpack) tab to open the checklist page and check for any UI elements or messages about day change or checklist reset.
         frame = context.pages[-1]
-        # Click on the 'Mochila' section to open the daily backpack checklist
+        # Click on 'Mochila' (Backpack) tab to open checklist page
         elem = frame.locator('xpath=html/body/main/div/div[4]/a[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         # --> Assertions to verify final state
         frame = context.pages[-1]
-        await expect(frame.locator('text=lunes, 12 de enero').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=6/6 items').first).to_be_visible(timeout=30000)
         await expect(frame.locator('text=2 sandwiches (comidas 2 y 3)').first).to_be_visible(timeout=30000)
         await expect(frame.locator('text=2 frutas').first).to_be_visible(timeout=30000)
         await expect(frame.locator('text=2 bolsitas mani (30g cada una)').first).to_be_visible(timeout=30000)
         await expect(frame.locator('text=2 yogurts').first).to_be_visible(timeout=30000)
         await expect(frame.locator('text=1 botella agua (1 litro)').first).to_be_visible(timeout=30000)
         await expect(frame.locator('text=1 pote mantequilla de mani').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=NO justifiques saltarte comidas').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Compra INMEDIATAMENTE lo mas parecido').first).to_be_visible(timeout=30000)
-        await expect(frame.locator('text=Anota el error para evitarlo manana').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Mochila lista').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=6/6 items').first).to_be_visible(timeout=30000)
         await asyncio.sleep(5)
     
     finally:

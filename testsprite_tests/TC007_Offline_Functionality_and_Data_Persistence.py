@@ -46,100 +46,100 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed with app usage and add meals, weight records, checklist completions
+        # -> Click the 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from welcome screen
+        # Click the 'Continuar' button on onboarding step 1
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a weight value (e.g., 150) and click 'Continuar' to proceed
+        # -> Input weight value and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input current weight value
+        # Input weight value 150 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('150')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering weight
+        # Click 'Continuar' button to proceed from onboarding step 2
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed with app usage and add initial data
+        # -> Click the 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from welcome screen
+        # Click the 'Continuar' button on onboarding step 1
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next onboarding step and continue adding initial data
+        # -> Click the 'Continuar' button to proceed to the next onboarding step.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering weight
+        # Click the 'Continuar' button to proceed from onboarding step 2
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a goal weight value (e.g., 180) and click 'Continuar' to proceed
+        # -> Input target weight value and click 'Continuar' to proceed.
         frame = context.pages[-1]
-        # Input goal weight value
+        # Input target weight value 180 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('180')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed after entering goal weight
+        # Click 'Continuar' button to proceed from onboarding step 3
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click 'Continuar' to proceed and complete onboarding, then start adding meals, weight records, and checklist completions with network connected
+        # -> Click the 'Continuar' button to proceed to the final onboarding step.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed from start date input and complete onboarding
+        # Click the 'Continuar' button to proceed from onboarding step 4
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to enter the main app and start adding meals, weight records, and checklist completions with network connected
+        # -> Click the '¡Comenzar!' button to enter the main app.
         frame = context.pages[-1]
-        # Click '¡Comenzar!' button to enter main app and start adding data
+        # Click the '¡Comenzar!' button to enter the main app
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Add a meal record with network connected to test data persistence
+        # -> Navigate to 'Comidas' section to add meal entries with network connected.
         frame = context.pages[-1]
-        # Click 'Comidas' to go to meals section to add a meal record
+        # Click 'Comidas' navigation link to add meal entries
         elem = frame.locator('xpath=html/body/nav/div/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Select the first meal 'Batida Matutina' to add a meal record
+        # -> Mark the first meal 'Batida Matutina' as completed to test meal status update with network connected.
         frame = context.pages[-1]
-        # Select 'Batida Matutina' meal to add a meal record
-        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div').nth(0)
+        # Click the first meal 'Batida Matutina' to open options for status update
+        elem = frame.locator('xpath=html/body/main/div/div[3]/div/div/div').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Navigate to the weight section to add a weight record with network connected
+        # -> Navigate to 'Peso' section to add weight records with network connected.
         frame = context.pages[-1]
-        # Click 'Peso' to navigate to weight records section
+        # Click 'Peso' navigation link to add weight records
         elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click 'Registrar Peso (fuera de horario)' button to add a new weight record
+        # -> Click 'Registrar Peso' button to add a new weight record with network connected.
         frame = context.pages[-1]
-        # Click 'Registrar Peso (fuera de horario)' button to add a new weight record
+        # Click 'Registrar Peso' button to add new weight record
         elem = frame.locator('xpath=html/body/main/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a new weight value (e.g., 152) and save the record to test data persistence with network connected
+        # -> Input new weight value 155 lb and save the record.
         frame = context.pages[-1]
-        # Input new weight value 152 lb
+        # Input new weight value 155 lb
         elem = frame.locator('xpath=html/body/main/div/div[5]/form/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('152')
+        await page.wait_for_timeout(3000); await elem.fill('155')
         
 
         frame = context.pages[-1]
@@ -148,10 +148,23 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Navigate to checklist section to add checklist completions with network connected
+        # -> Navigate to 'Mochila' or checklist section to add checklist completions with network connected.
         frame = context.pages[-1]
-        # Click 'Ajustes' to navigate to settings or checklist section
+        # Click 'Peso' navigation link to refresh or confirm weight page
+        elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        frame = context.pages[-1]
+        # Click 'Reportes' navigation link to check reports section
         elem = frame.locator('xpath=html/body/nav/div/a[4]').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # -> Go offline by disabling network to test offline capabilities and data persistence.
+        frame = context.pages[-1]
+        # Click 'Inicio' navigation link to return to main dashboard before going offline
+        elem = frame.locator('xpath=html/body/nav/div/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
@@ -160,7 +173,7 @@ async def run_test():
         try:
             await expect(frame.locator('text=Offline Data Sync Successful').first).to_be_visible(timeout=1000)
         except AssertionError:
-            raise AssertionError("Test failed: Offline capabilities test failed as the expected data synchronization confirmation 'Offline Data Sync Successful' was not found, indicating data persistence or UI update issues when offline.")
+            raise AssertionError("Test failed: Offline capabilities test failed as the app did not persist or display data correctly when offline, violating the test plan requirements.")
         await asyncio.sleep(5)
     
     finally:

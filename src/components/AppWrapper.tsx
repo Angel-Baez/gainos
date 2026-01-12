@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  InstallPrompt,
+  IOSInstallInstructions,
+} from "@/components/InstallPrompt";
 import { Onboarding } from "@/components/Onboarding";
 import { useSettings } from "@/hooks/useSettings";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -79,5 +83,11 @@ export function AppWrapper({ children }: AppWrapperProps) {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <InstallPrompt />
+      <IOSInstallInstructions />
+    </>
+  );
 }

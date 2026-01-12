@@ -46,99 +46,92 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # -> Click the 'Continuar' button to proceed to the main app interface where the bottom navigation bar is expected.
+        # -> Click 'Continuar' to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from welcome screen
+        # Click 'Continuar' button to proceed with onboarding step 1
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a valid weight value and continue through onboarding until the main app interface with the bottom navigation bar is visible.
+        # -> Input weight value and click 'Continuar' to proceed with onboarding.
         frame = context.pages[-1]
-        # Input a valid weight value to proceed with onboarding
+        # Input weight value 150 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('150')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed to next onboarding step
+        # Click 'Continuar' button to proceed with onboarding step 2
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed with onboarding towards the main app interface.
+        # -> Click 'Continuar' to proceed with onboarding.
         frame = context.pages[-1]
-        # Click the 'Continuar' button to proceed from welcome screen
+        # Click 'Continuar' button to proceed with onboarding step 1
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the next onboarding step.
+        # -> Click 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed to next onboarding step
+        # Click 'Continuar' button to proceed with onboarding step 2
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Input a valid goal weight and click 'Continuar' to proceed to the next onboarding step.
+        # -> Input goal weight value and click 'Continuar' to proceed with onboarding.
         frame = context.pages[-1]
-        # Input a valid goal weight to proceed with onboarding
+        # Input goal weight value 180 lb
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[3]/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('180')
         
 
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed to next onboarding step
+        # Click 'Continuar' button to proceed with onboarding step 3
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the 'Continuar' button to proceed to the final onboarding step and reach the main app interface.
+        # -> Click 'Continuar' button to proceed with onboarding.
         frame = context.pages[-1]
-        # Click 'Continuar' button to proceed to final onboarding step
+        # Click 'Continuar' button to proceed with onboarding step 4
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click the '¡Comenzar!' button to complete onboarding and access the main app interface with the bottom navigation bar.
+        # -> Click '¡Comenzar!' button to enter main app interface and access bottom navigation bar.
         frame = context.pages[-1]
-        # Click the '¡Comenzar!' button to complete onboarding and access main app interface
+        # Click '¡Comenzar!' button to enter main app interface
         elem = frame.locator('xpath=html/body/div[2]/div[2]/div[4]/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the 'Comidas' (Meals) navigation item and verify the content updates accordingly.
+        # -> Click on 'Comidas' (Meals) in the bottom navigation bar and verify the app content updates to the Meals page.
         frame = context.pages[-1]
-        # Click on 'Comidas' (Meals) navigation item
+        # Click 'Comidas' (Meals) in the bottom navigation bar
         elem = frame.locator('xpath=html/body/nav/div/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the 'Peso' (Weight) navigation item and verify the content updates accordingly.
+        # -> Click on 'Peso' (Weight) in the bottom navigation bar and verify the app content updates to the Weight page.
         frame = context.pages[-1]
-        # Click on 'Peso' (Weight) navigation item
+        # Click 'Peso' (Weight) in the bottom navigation bar
         elem = frame.locator('xpath=html/body/nav/div/a[3]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the 'Reportes' (Reports) navigation item and verify the content updates accordingly.
+        # -> Click on 'Reportes' (Reports) in the bottom navigation bar and verify the app content updates to the Reports page.
         frame = context.pages[-1]
-        # Click on 'Reportes' (Reports) navigation item
+        # Click 'Reportes' (Reports) in the bottom navigation bar
         elem = frame.locator('xpath=html/body/nav/div/a[4]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # -> Click on the 'Ajustes' (Settings) navigation item and verify the content updates accordingly.
+        # -> Click on 'Ajustes' (Settings) in the bottom navigation bar and verify the app content updates to the Settings page.
         frame = context.pages[-1]
-        # Click on 'Ajustes' (Settings) navigation item
+        # Click 'Ajustes' (Settings) in the bottom navigation bar
         elem = frame.locator('xpath=html/body/nav/div/a[5]').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # -> Click on the 'Inicio' (Dashboard) navigation item to verify it navigates correctly as a final check.
-        frame = context.pages[-1]
-        # Click on 'Inicio' (Dashboard) navigation item for final verification
-        elem = frame.locator('xpath=html/body/nav/div/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
@@ -156,10 +149,7 @@ async def run_test():
         await expect(frame.locator('text=Reportes').first).to_be_visible(timeout=30000)
         elem = frame.locator('text=Ajustes').first
         await elem.click()
-        await expect(frame.locator('text=Ajustes').first).to_be_visible(timeout=30000)
-        elem = frame.locator('text=Inicio').first
-        await elem.click()
-        await expect(frame.locator('text=Inicio').first).to_be_visible(timeout=30000)
+        await expect(frame.locator('text=Configuración').first).to_be_visible(timeout=30000)
         await asyncio.sleep(5)
     
     finally:

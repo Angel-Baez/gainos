@@ -51,6 +51,12 @@ export function useMeals(date: Date = new Date()) {
     });
   };
 
+  // Actualizar notas de una comida
+  const updateMealNotes = async (mealNumber: number, notes: string) => {
+    const id = getMealId(dateString, mealNumber);
+    await db.meals.update(id, { notes: notes || undefined });
+  };
+
   // Toggle entre completada y pendiente
   const toggleMeal = async (mealNumber: number) => {
     const id = getMealId(dateString, mealNumber);
@@ -68,6 +74,7 @@ export function useMeals(date: Date = new Date()) {
     total: 8,
     completed: meals?.filter((m) => m.status === "completed").length ?? 0,
     skipped: meals?.filter((m) => m.status === "skipped").length ?? 0,
+    partial: meals?.filter((m) => m.status === "partial").length ?? 0,
     pending: meals?.filter((m) => m.status === "pending").length ?? 0,
   };
 
@@ -78,6 +85,7 @@ export function useMeals(date: Date = new Date()) {
       ...info,
       status: dayMeal?.status ?? "pending",
       completedAt: dayMeal?.completedAt,
+      notes: dayMeal?.notes,
     };
   });
 
@@ -86,6 +94,7 @@ export function useMeals(date: Date = new Date()) {
     stats,
     initializeDayMeals,
     updateMealStatus,
+    updateMealNotes,
     toggleMeal,
     dateString,
   };

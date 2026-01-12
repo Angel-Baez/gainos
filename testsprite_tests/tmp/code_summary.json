@@ -65,7 +65,14 @@
   "dataModels": [
     {
       "name": "DailyMeal",
-      "fields": ["id", "date", "mealNumber (1-8)", "status", "completedAt", "notes"]
+      "fields": [
+        "id",
+        "date",
+        "mealNumber (1-8)",
+        "status",
+        "completedAt",
+        "notes"
+      ]
     },
     {
       "name": "WeightRecord",
@@ -81,7 +88,15 @@
     },
     {
       "name": "WeeklyScore",
-      "fields": ["id", "weekStart", "mealsScore", "mealPrepScore", "trackingScore", "weightScore", "total"]
+      "fields": [
+        "id",
+        "weekStart",
+        "mealsScore",
+        "mealPrepScore",
+        "trackingScore",
+        "weightScore",
+        "total"
+      ]
     }
   ],
   "navigation": {

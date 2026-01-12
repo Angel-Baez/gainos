@@ -4,22 +4,37 @@ import { MealCard } from "@/components/MealCard";
 import { Progress } from "@/components/ui/progress";
 import { useMeals } from "@/hooks/useMeals";
 import { DAILY_CALORIES_TARGET } from "@/lib/constants";
+import { MealStatus } from "@/types";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useEffect } from "react";
 
 export default function MealsPage() {
-  const { meals, stats, initializeDayMeals, toggleMeal, dateString } =
-    useMeals();
+  const {
+    meals,
+    stats,
+    initializeDayMeals,
+    toggleMeal,
+    updateMealStatus,
+    updateMealNotes,
+    dateString,
+  } = useMeals();
 
   useEffect(() => {
     initializeDayMeals();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateString]);
 
+  // Calcular calorías considerando estados parciales
   const completedCalories = meals
     .filter((m) => m.status === "completed")
     .reduce((sum, m) => sum + m.calories, 0);
+
+  const partialCalories = meals
+    .filter((m) => m.status === "partial")
+    .reduce((sum, m) => sum + Math.round(m.calories * 0.5), 0);
+
+  const totalCalories = completedCalories + partialCalories;
 
   const progressPercent = (stats.completed / stats.total) * 100;
 
@@ -49,7 +64,7 @@ export default function MealsPage() {
           <div>
             <span className="text-muted-foreground">Calorias: </span>
             <span className="font-medium">
-              {completedCalories.toLocaleString()}
+              {totalCalories.toLocaleString()}
             </span>
             <span className="text-muted-foreground">
               {" "}
@@ -60,6 +75,20 @@ export default function MealsPage() {
             {Math.round(progressPercent)}%
           </div>
         </div>
+
+        {/* Show stats breakdown */}
+        {(stats.skipped > 0 || meals.some((m) => m.status === "partial")) && (
+          <div className="mt-2 pt-2 border-t border-border/50 flex gap-4 text-xs text-muted-foreground">
+            {stats.skipped > 0 && (
+              <span className="text-destructive">{stats.skipped} saltadas</span>
+            )}
+            {meals.some((m) => m.status === "partial") && (
+              <span className="text-yellow-500">
+                {meals.filter((m) => m.status === "partial").length} parciales
+              </span>
+            )}
+          </div>
+        )}
 
         {stats.completed === 8 && (
           <div className="mt-3 pt-3 border-t border-border text-center">
@@ -78,7 +107,16 @@ export default function MealsPage() {
             className="animate-slide-up"
             style={{ animationDelay: `${index * 50}ms` }}
           >
-            <MealCard meal={meal} onToggle={() => toggleMeal(meal.number)} />
+            <MealCard
+              meal={meal}
+              onToggle={() => toggleMeal(meal.number)}
+              onStatusChange={(status: MealStatus) =>
+                updateMealStatus(meal.number, status)
+              }
+              onNotesChange={(notes: string) =>
+                updateMealNotes(meal.number, notes)
+              }
+            />
           </div>
         ))}
       </div>

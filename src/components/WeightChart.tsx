@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
+import { WeightRecord } from "@/types";
+import { format, parseISO } from "date-fns";
+import { es } from "date-fns/locale";
 import {
-  LineChart,
   Line,
+  LineChart,
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  ResponsiveContainer,
-  ReferenceLine,
-  Tooltip,
-} from 'recharts';
-import { WeightRecord } from '@/types';
-import { format, parseISO } from 'date-fns';
-import { es } from 'date-fns/locale';
+} from "recharts";
 
 interface WeightChartProps {
   weights: WeightRecord[];
@@ -19,9 +19,13 @@ interface WeightChartProps {
   startWeight: number;
 }
 
-export function WeightChart({ weights, goalWeight, startWeight }: WeightChartProps) {
+export function WeightChart({
+  weights,
+  goalWeight,
+  startWeight,
+}: WeightChartProps) {
   const data = weights.map((w) => ({
-    date: format(parseISO(w.date), 'd MMM', { locale: es }),
+    date: format(parseISO(w.date), "d MMM", { locale: es }),
     weight: w.weight,
     fullDate: w.date,
   }));
@@ -40,30 +44,39 @@ export function WeightChart({ weights, goalWeight, startWeight }: WeightChartPro
   const maxY = Math.ceil(Math.max(...allWeights) + 2);
 
   return (
-    <div className="h-48 w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+    <div className="h-48 w-full" style={{ minHeight: 192, minWidth: 200 }}>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        minHeight={192}
+        minWidth={200}
+        debounce={50}
+      >
+        <LineChart
+          data={data}
+          margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+        >
           <XAxis
             dataKey="date"
-            tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }}
-            axisLine={{ stroke: 'hsl(var(--border))' }}
+            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+            axisLine={{ stroke: "hsl(var(--border))" }}
             tickLine={false}
           />
           <YAxis
             domain={[minY, maxY]}
-            tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }}
+            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
             axisLine={false}
             tickLine={false}
             tickFormatter={(value) => `${value}`}
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: 'hsl(var(--card))',
-              border: '1px solid hsl(var(--border))',
-              borderRadius: '8px',
-              fontSize: '12px',
+              backgroundColor: "hsl(var(--card))",
+              border: "1px solid hsl(var(--border))",
+              borderRadius: "8px",
+              fontSize: "12px",
             }}
-            formatter={(value) => [`${value} lb`, 'Peso']}
+            formatter={(value) => [`${value} lb`, "Peso"]}
             labelFormatter={(label) => label}
           />
           <ReferenceLine
@@ -83,8 +96,8 @@ export function WeightChart({ weights, goalWeight, startWeight }: WeightChartPro
             dataKey="weight"
             stroke="hsl(var(--primary))"
             strokeWidth={2}
-            dot={{ fill: 'hsl(var(--primary))', strokeWidth: 0, r: 4 }}
-            activeDot={{ r: 6, fill: 'hsl(var(--primary))' }}
+            dot={{ fill: "hsl(var(--primary))", strokeWidth: 0, r: 4 }}
+            activeDot={{ r: 6, fill: "hsl(var(--primary))" }}
           />
         </LineChart>
       </ResponsiveContainer>
