@@ -1,6 +1,31 @@
 <svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo oscuro redondeado -->
   <rect width="192" height="192" rx="40" fill="#1a1a1a"/>
-  <circle cx="96" cy="96" r="60" stroke="#4ade80" stroke-width="8" fill="none"/>
-  <path d="M96 56 L96 96 L126 96" stroke="#4ade80" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="96" cy="96" r="8" fill="#4ade80"/>
+
+  <!-- Arco de progreso (fondo) -->
+  <circle cx="96" cy="96" r="56" stroke="#2a2a2a" stroke-width="10" fill="none"/>
+
+  <!-- Arco de progreso (activo ~75%) -->
+  <circle
+    cx="96"
+    cy="96"
+    r="56"
+    stroke="#4ade80"
+    stroke-width="10"
+    fill="none"
+    stroke-linecap="round"
+    stroke-dasharray="264"
+    stroke-dashoffset="66"
+    transform="rotate(-90 96 96)"
+  />
+
+  <!-- Flecha hacia arriba -->
+  <path
+    d="M96 125 L96 67 M96 67 L72 91 M96 67 L120 91"
+    stroke="#4ade80"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
 </svg>
