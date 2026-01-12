@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GainOS
 
-## Getting Started
+PWA para tracking de plan de aumento de peso saludable.
 
-First, run the development server:
+## Funcionalidades
+
+- **Dashboard** - Resumen diario con progreso de comidas y peso
+- **Tracking de Comidas** - 8 comidas diarias con horarios y calorias
+- **Registro de Peso** - Pesaje semanal con grafico de progreso
+- **Meal Prep** - Checklist de preparacion de comidas (domingos)
+- **Mochila** - Checklist diario de items para llevar al trabajo
+
+## Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Lenguaje:** TypeScript
+- **Estilos:** Tailwind CSS + shadcn/ui
+- **Base de datos:** IndexedDB (Dexie.js)
+- **Graficos:** Recharts
+
+## Instalacion
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clonar repositorio
+git clone https://github.com/Angel-Baez/gainos.git
+cd gainos
+
+# Instalar dependencias
+pnpm install
+
+# Iniciar servidor de desarrollo
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura del Proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── page.tsx          # Dashboard
+│   ├── meals/            # Tracking de comidas
+│   ├── weight/           # Registro de peso
+│   ├── mealprep/         # Checklist meal prep
+│   └── backpack/         # Checklist mochila
+├── components/
+│   ├── ui/               # Componentes shadcn/ui
+│   ├── MealCard.tsx
+│   ├── WeightChart.tsx
+│   ├── ProgressRing.tsx
+│   └── Navigation.tsx
+├── hooks/
+│   ├── useMeals.ts
+│   ├── useWeight.ts
+│   ├── useMealPrep.ts
+│   └── useBackpack.ts
+├── lib/
+│   ├── db.ts             # Configuracion IndexedDB
+│   ├── constants.ts      # Datos de comidas y configuracion
+│   └── utils.ts
+└── types/
+    └── index.ts
+```
 
-## Learn More
+## PWA
 
-To learn more about Next.js, take a look at the following resources:
+La app es instalable como PWA:
+- Funciona offline (datos guardados localmente)
+- Se puede agregar a la pantalla de inicio
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Plan de Alimentacion
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+El tracking esta basado en un plan de 8 comidas diarias (~4,050 calorias):
 
-## Deploy on Vercel
+| # | Comida | Hora | Calorias |
+|---|--------|------|----------|
+| 1 | Batida Matutina | 6:30am | 500 |
+| 2 | Desayuno Solido | 9:30am | 600 |
+| 3 | Snack Media Manana | 11:30am | 300 |
+| 4 | Almuerzo Principal | 1:00pm | 900 |
+| 5 | Merienda Tarde | 4:00pm | 400 |
+| 6 | Pre-Cena | 7:00pm | 350 |
+| 7 | Cena Principal | 9:30pm | 700 |
+| 8 | Batida Nocturna | 10:30pm | 300 |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Build de produccion
+pnpm build
+
+# Iniciar en produccion
+pnpm start
+```
+
+Compatible con Vercel, Netlify, o cualquier hosting que soporte Next.js.
+
+## Licencia
+
+MIT
