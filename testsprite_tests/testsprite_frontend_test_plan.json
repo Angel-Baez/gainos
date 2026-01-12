@@ -1,0 +1,450 @@
+[
+  {
+    "id": "TC001",
+    "title": "Daily Meal Tracking with All Statuses",
+    "description": "Verify that users can mark each of the 8 daily meals with statuses: pending (default), completed, skipped, and partial including adding and saving notes for each meal.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Meals page"
+      },
+      {
+        "type": "action",
+        "description": "For each of the 8 meals, set status to completed and add a note"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the meal status updates correctly to completed with the note saved"
+      },
+      {
+        "type": "action",
+        "description": "Change some meals to skipped and partial statuses with notes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify meal status changes are saved accurately including notes"
+      },
+      {
+        "type": "action",
+        "description": "Reload the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm persistence of meal status and notes"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Dashboard Progress Ring Updates with Meal Status",
+    "description": "Check that the progress ring on the Dashboard accurately reflects the number of completed meals out of 8 each day and updates in real time as meal statuses change.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Meals page"
+      },
+      {
+        "type": "action",
+        "description": "Mark 5 meals as completed"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the Dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the progress ring shows 5/8 meals completed"
+      },
+      {
+        "type": "action",
+        "description": "Go back to Meals and complete remaining meals"
+      },
+      {
+        "type": "action",
+        "description": "Return to Dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify progress ring updates to show 8/8 meals completed"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Weekly Weight Logging with Optional Photo and Graph Update",
+    "description": "Ensure users can add a weekly weight record, optionally attach a photo, add notes, and see the weight progress graph update accordingly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Weight page"
+      },
+      {
+        "type": "action",
+        "description": "Add a new weight record with weight value, photo attachment, and notes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new record is saved with correct weight, photo, and notes"
+      },
+      {
+        "type": "action",
+        "description": "Confirm the progress graph reflects the new weight entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the weight graph updates and shows trend properly"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Weekly Meal Prep Checklist Completion and Reset",
+    "description": "Verify the meal prep checklist with 9 predefined items can be marked completed on Sundays and resets correctly the next week.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Meal Prep page on a Sunday"
+      },
+      {
+        "type": "action",
+        "description": "Mark all 9 predefined items as completed"
+      },
+      {
+        "type": "assertion",
+        "description": "Check the meal prep record is saved with all items completed and timestamp"
+      },
+      {
+        "type": "action",
+        "description": "Simulate advance to next week"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the checklist resets to not completed for the new week"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Daily Backpack Checklist Functionality and Reset",
+    "description": "Confirm the daily backpack checklist items (sandwiches, fruits, nuts, yogurts, water, peanut butter) can be checked off each day and resets the following day.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Backpack page"
+      },
+      {
+        "type": "action",
+        "description": "Mark each item in the checklist as packed"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that items are saved as packed for the current day"
+      },
+      {
+        "type": "action",
+        "description": "Simulate day change to next day"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify checklist is reset with all items unchecked"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Weekly Score Calculation Accuracy",
+    "description": "Validate that the weekly scoring system calculates total score up to 100 points based on meals (50 pts), meal prep (20 pts), tracking consistency (15 pts), and weight progress (15 pts).",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Complete 56 meals in a week with various statuses"
+      },
+      {
+        "type": "action",
+        "description": "Complete all meal prep items for the week"
+      },
+      {
+        "type": "action",
+        "description": "Maintain daily meal tracking consistency"
+      },
+      {
+        "type": "action",
+        "description": "Log weekly weight progress within target gain"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Dashboard score section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify weekly score is correctly aggregated and does not exceed 100 points"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Offline Functionality and Data Persistence",
+    "description": "Test the app's offline capabilities including data persistence using IndexedDB and verify data availability and functionality without network connection.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Use the app with network connected: add meals, weight records, checklist completions"
+      },
+      {
+        "type": "action",
+        "description": "Go offline by disabling network"
+      },
+      {
+        "type": "action",
+        "description": "Navigate through app sections and review previously saved data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all previously entered data is available and UI responds properly"
+      },
+      {
+        "type": "action",
+        "description": "Add new meal status updates and checklist completions offline"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm data saves locally and reflects in UI"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "PWA Installability and Service Worker Caching",
+    "description": "Ensure the app supports installation as a PWA on supported devices and service worker caching works for offline startup and asset availability.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Access the app on supported mobile device or desktop"
+      },
+      {
+        "type": "action",
+        "description": "Trigger the PWA installation prompt and install the app"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the app installs successfully and launches from home screen"
+      },
+      {
+        "type": "action",
+        "description": "Go offline and launch the installed PWA"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm service worker caches assets and app loads correctly offline"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Reports Weekly and Monthly Data Accuracy",
+    "description": "Verify reports page displays aggregated meal completion counts, weight changes, and scoring summaries correctly for both weekly and monthly views.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Complete meals and weight entries over several weeks"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Reports page"
+      },
+      {
+        "type": "assertion",
+        "description": "Check weekly report displays correct meal completion, weight change, and score data"
+      },
+      {
+        "type": "action",
+        "description": "Switch to monthly report view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify monthly aggregation of data is accurate and consistent"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Historical Calendar View and Past Records Access",
+    "description": "Confirm that the History calendar view shows past days, allows user to select a day, and access corresponding meal and weight records with trends correctly displayed.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to History page"
+      },
+      {
+        "type": "action",
+        "description": "Select a previous day on the calendar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify selected day's meal statuses and weight records are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Review trend data and charts for historical progress"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm trend charts show consistent historical data"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "User Settings Persistence and Effect",
+    "description": "Validate that changes to user settings including goal weight, start date, and theme (light/dark/system) persist across sessions and take immediate effect.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Settings page"
+      },
+      {
+        "type": "action",
+        "description": "Modify goal weight, start date, and theme preference"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify changes reflect immediately in app UI and underlying data"
+      },
+      {
+        "type": "action",
+        "description": "Reload or restart the app"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm settings persist after restart and UI reflects preferences"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Error Handling on Invalid Weight Entry",
+    "description": "Ensure the app prevents invalid weight inputs (e.g., negative numbers, non-numeric text) and shows appropriate error messages.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Weight page"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to enter empty, negative, zero, or non-numeric weight values"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error message is shown and the invalid data is not saved"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Meal Status Change from Completed Back to Pending",
+    "description": "Verify that users can revert a meal's status from completed, skipped, or partial back to pending and that this updates all related UI elements accordingly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Meals page"
+      },
+      {
+        "type": "action",
+        "description": "Mark a meal as completed"
+      },
+      {
+        "type": "action",
+        "description": "Change the meal status back to pending"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the status changes correctly and progress ring updates on Dashboard"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "App Navigation via Bottom Navigation Bar",
+    "description": "Check that the bottom navigation bar items navigate correctly to: Dashboard, Meals, Weight, Reports, and Settings pages.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Use bottom navigation bar to tap on each of the 5 main sections"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the app content updates to corresponding section for each tap"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Visual Feedback and Responsiveness for Meal Actions",
+    "description": "Ensure that when the user marks a meal status or adds notes, the UI provides immediate and clear visual feedback on mobile devices under varying screen sizes.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the Meals page on different device sizes or emulators"
+      },
+      {
+        "type": "action",
+        "description": "Change meal statuses and add notes"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that visual indicators update immediately and UI remains responsive without layout issues"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Security: Local Data Storage Only Without External Transmission",
+    "description": "Confirm that all user data is stored locally and no external network requests transmit personal meal, weight, or checklist data to remote servers.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Perform all user operations like meal tracking, weight logging, checklist completion"
+      },
+      {
+        "type": "action",
+        "description": "Monitor network requests using developer tools"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no user data is sent to external servers or cloud"
+      }
+    ]
+  }
+]

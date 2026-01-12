@@ -1,0 +1,104 @@
+{
+  "projectName": "GainOS",
+  "description": "PWA de Tracking para Aumento de Peso Saludable - Ayuda a personas con bajo peso a seguir un plan estructurado de aumento de peso saludable",
+  "techStack": {
+    "framework": "Next.js 16.x (App Router)",
+    "language": "TypeScript 5.x",
+    "ui": {
+      "library": "React 19.x",
+      "styling": "Tailwind CSS 4.x",
+      "components": ["shadcn/ui", "Radix UI"]
+    },
+    "database": "IndexedDB (via Dexie.js 4.x)",
+    "charts": "Recharts 3.x",
+    "icons": "Lucide React",
+    "dates": "date-fns 4.x",
+    "type": "PWA (Progressive Web App)"
+  },
+  "features": [
+    {
+      "name": "Dashboard Principal",
+      "route": "/",
+      "description": "Anillo de progreso mostrando comidas completadas del día (X/8), barra de calorías, resumen de peso, score semanal y accesos rápidos"
+    },
+    {
+      "name": "Tracking de Comidas",
+      "route": "/meals",
+      "description": "Lista de 8 comidas diarias con nombre, hora, calorías, descripción. Estados: pending, completed, skipped, partial"
+    },
+    {
+      "name": "Registro de Peso",
+      "route": "/weight",
+      "description": "Pesaje semanal con gráfico de progreso, captura de foto opcional, métricas calculadas"
+    },
+    {
+      "name": "Meal Prep",
+      "route": "/mealprep",
+      "description": "Checklist semanal de preparación con 9 items predefinidos para organizar comidas los domingos"
+    },
+    {
+      "name": "Mochila Diaria",
+      "route": "/backpack",
+      "description": "Checklist diario de items para llevar al trabajo: sandwiches, frutas, maní, yogurts, agua"
+    },
+    {
+      "name": "Sistema de Puntuación",
+      "route": "/",
+      "description": "Score semanal máximo 100 puntos: Comidas (50pts), Meal Prep (20pts), Tracking (15pts), Peso (15pts)"
+    },
+    {
+      "name": "Reportes",
+      "route": "/reports",
+      "description": "Reporte semanal y mensual con comidas completadas, cambio de peso, score total"
+    },
+    {
+      "name": "Historial",
+      "route": "/history",
+      "description": "Vista de calendario con días pasados y registros históricos"
+    },
+    {
+      "name": "Configuración",
+      "route": "/settings",
+      "description": "Peso inicial y meta, fecha de inicio, tema (light/dark/system), onboarding"
+    }
+  ],
+  "dataModels": [
+    {
+      "name": "DailyMeal",
+      "fields": ["id", "date", "mealNumber (1-8)", "status", "completedAt", "notes"]
+    },
+    {
+      "name": "WeightRecord",
+      "fields": ["id", "date", "weight (lb)", "photoUri", "notes"]
+    },
+    {
+      "name": "MealPrepRecord",
+      "fields": ["id (YYYY-WW)", "weekStart", "items", "completedAt"]
+    },
+    {
+      "name": "BackpackCheck",
+      "fields": ["id (YYYY-MM-DD)", "date", "items"]
+    },
+    {
+      "name": "WeeklyScore",
+      "fields": ["id", "weekStart", "mealsScore", "mealPrepScore", "trackingScore", "weightScore", "total"]
+    }
+  ],
+  "navigation": {
+    "type": "Bottom Navigation Bar",
+    "items": [
+      { "label": "Inicio", "route": "/", "icon": "Home" },
+      { "label": "Comidas", "route": "/meals", "icon": "Utensils" },
+      { "label": "Peso", "route": "/weight", "icon": "Scale" },
+      { "label": "Reportes", "route": "/reports", "icon": "BarChart3" },
+      { "label": "Ajustes", "route": "/settings", "icon": "Settings" }
+    ]
+  },
+  "userGoals": {
+    "dailyMeals": 8,
+    "dailyCalories": 4050,
+    "weeklyMeals": 56,
+    "weightGoal": "Ganar 0.5-1 lb por semana",
+    "targetWeight": "De 104 lb a 135+ lb"
+  }
+}

@@ -1,23 +1,26 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useBackpack } from '@/hooks/useBackpack';
-import { Card } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Progress } from '@/components/ui/progress';
-import { Backpack, Check, Clock } from 'lucide-react';
-import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
-import { cn } from '@/lib/utils';
+import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { useBackpack } from "@/hooks/useBackpack";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { Backpack, Check, Clock } from "lucide-react";
+import { useEffect } from "react";
 
 export default function BackpackPage() {
-  const { items, stats, initializeBackpack, toggleItem, dateString } = useBackpack();
+  const { items, stats, initializeBackpack, toggleItem, dateString } =
+    useBackpack();
 
   useEffect(() => {
     initializeBackpack();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateString]);
 
-  const progressPercent = stats.total > 0 ? (stats.checked / stats.total) * 100 : 0;
+  const progressPercent =
+    stats.total > 0 ? (stats.checked / stats.total) * 100 : 0;
   const now = new Date();
   const isEvening = now.getHours() >= 20; // Despues de 8pm
 
@@ -37,7 +40,9 @@ export default function BackpackPage() {
           <div className="flex items-start gap-3">
             <Clock className="h-5 w-5 text-primary mt-0.5" />
             <div>
-              <p className="font-semibold text-sm">Prepara tu mochila para manana</p>
+              <p className="font-semibold text-sm">
+                Prepara tu mochila para manana
+              </p>
               <p className="text-xs text-muted-foreground mt-1">
                 Mejor preparar ahora (8:00pm - 8:15pm)
               </p>
@@ -68,14 +73,14 @@ export default function BackpackPage() {
       <div className="flex justify-center mb-6">
         <div
           className={cn(
-            'p-6 rounded-full',
-            stats.allChecked ? 'bg-primary/20' : 'bg-secondary'
+            "p-6 rounded-full",
+            stats.allChecked ? "bg-primary/20" : "bg-secondary"
           )}
         >
           <Backpack
             className={cn(
-              'h-16 w-16',
-              stats.allChecked ? 'text-primary' : 'text-muted-foreground'
+              "h-16 w-16",
+              stats.allChecked ? "text-primary" : "text-muted-foreground"
             )}
           />
         </div>
@@ -91,10 +96,10 @@ export default function BackpackPage() {
           <Card
             key={index}
             className={cn(
-              'p-4 cursor-pointer transition-all border',
+              "p-4 cursor-pointer transition-all border",
               item.checked
-                ? 'bg-primary/10 border-primary/30'
-                : 'bg-card border-border hover:border-primary/50'
+                ? "bg-primary/10 border-primary/30"
+                : "bg-card border-border hover:border-primary/50"
             )}
             onClick={() => toggleItem(index)}
           >
@@ -106,8 +111,8 @@ export default function BackpackPage() {
               />
               <span
                 className={cn(
-                  'text-sm',
-                  item.checked && 'line-through text-muted-foreground'
+                  "text-sm",
+                  item.checked && "line-through text-muted-foreground"
                 )}
               >
                 {item.name}
@@ -119,7 +124,9 @@ export default function BackpackPage() {
 
       {/* Warning */}
       <Card className="p-4 mt-6 bg-destructive/10 border-destructive/30">
-        <h3 className="text-sm font-semibold mb-2 text-destructive">Si olvidas la mochila:</h3>
+        <h3 className="text-sm font-semibold mb-2 text-destructive">
+          Si olvidas la mochila:
+        </h3>
         <ul className="text-xs text-muted-foreground space-y-1">
           <li>• NO justifiques saltarte comidas</li>
           <li>• Compra INMEDIATAMENTE lo mas parecido</li>

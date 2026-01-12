@@ -1,0 +1,207 @@
+{
+  "meta": {
+    "project": "GainOS",
+    "date": "2026-01-09",
+    "prepared_by": "GainOS Team"
+  },
+  "product_overview": "GainOS is a Progressive Web App (PWA) designed to assist underweight individuals in following a structured, healthy weight gain plan. The app provides comprehensive tracking for meals, weight, meal preparation, and daily packing, with a motivational scoring system to ensure accountability and progress.",
+  "core_goals": [
+    "Enable users to consistently complete 8 meals daily (56 meals weekly) to support healthy weight gain.",
+    "Provide clear visual feedback on daily and weekly progress including calorie intake and weight milestones.",
+    "Offer an organized weekly meal prep checklist to simplify food preparation.",
+    "Facilitate daily packing reminders to ensure users take necessary meals and snacks when away from home.",
+    "Motivate users through a weekly scoring system to maintain consistency and adherence to the plan.",
+    "Enable offline functionality and installability as a PWA for seamless mobile usage."
+  ],
+  "key_features": [
+    "Dashboard with progress ring displaying completed meals count, calorie intake bar, weight summary, weekly score, and quick access navigation.",
+    "Meal tracking interface listing 8 daily meals with status indicators (pending, completed, skipped, partial) and notes.",
+    "Weekly weight logging with optional photo capture and visual progress chart.",
+    "Weekly meal prep checklist of 9 predefined items to organize Sunday meal preparation.",
+    "Daily backpack checklist for items to carry including sandwiches, fruits, nuts, yogurts, water, and peanut butter.",
+    "Comprehensive weekly scoring system capped at 100 points across meals, meal prep, tracking consistency, and weight gain.",
+    "Weekly and monthly reports detailing meal completion, weight changes, and scoring summaries.",
+    "Historical calendar view of past days with access to prior records and trends.",
+    "User settings including goal weight, start date, themes (light/dark/system), and onboarding status.",
+    "PWA capabilities with offline support, service worker caching, and home screen installability."
+  ],
+  "user_flow_summary": [
+    "User opens GainOS app and lands on the Dashboard to view daily meal completion and progress.",
+    "User navigates to 'Meals' to mark meals as completed, skipped, or partial, adding notes as needed.",
+    "Upon completing meals, user returns to Dashboard to see real-time updates on progress and scores.",
+    "Weekly routine includes weighing in under 'Weight' to record weight with optional photo and review progress graph.",
+    "User performs meal preparation on Sundays using the checklist in 'Meal Prep' to ensure readiness for the week.",
+    "Daily, user checks 'Backpack' to confirm necessary meal items are packed for work or outings.",
+    "User reviews weekly and monthly reports in 'Reports' and monitors historical trends in 'History'.",
+    "User adjusts personal settings and goals as needed in 'Settings'."
+  ],
+  "validation_criteria": [
+    "The app must allow logging and state management of 8 meals per day with correct statuses and timestamps.",
+    "Weight records must include weekly entries with optional photo attachments and accurate progress calculations.",
+    "Meal prep and backpack daily checklists must reset and update correctly, with completion tracked per week and day respectively.",
+    "Weekly score calculation must accurately reflect meal completion, meal prep completion, tracking consistency, and weight progress.",
+    "The app must function offline with data persistence via IndexedDB and allow installation as a PWA.",
+    "User interface must be responsive, mobile-first, and provide immediate visual feedback for all user actions.",
+    "Reports and history views must correctly aggregate and display data over weekly and monthly periods.",
+    "Settings changes must persist and take effect, including theme modes and user goals.",
+    "All user data must remain local with no external data transmission or cloud synchronization.",
+    "App navigation must be intuitive with a fixed bottom navigation bar providing access to main app sections."
+  ],
+  "code_summary": {
+    "projectName": "GainOS",
+    "description": "PWA de Tracking para Aumento de Peso Saludable - Ayuda a personas con bajo peso a seguir un plan estructurado de aumento de peso saludable",
+    "techStack": {
+      "framework": "Next.js 16.x (App Router)",
+      "language": "TypeScript 5.x",
+      "ui": {
+        "library": "React 19.x",
+        "styling": "Tailwind CSS 4.x",
+        "components": [
+          "shadcn/ui",
+          "Radix UI"
+        ]
+      },
+      "database": "IndexedDB (via Dexie.js 4.x)",
+      "charts": "Recharts 3.x",
+      "icons": "Lucide React",
+      "dates": "date-fns 4.x",
+      "type": "PWA (Progressive Web App)"
+    },
+    "features": [
+      {
+        "name": "Dashboard Principal",
+        "route": "/",
+        "description": "Anillo de progreso mostrando comidas completadas del día (X/8), barra de calorías, resumen de peso, score semanal y accesos rápidos"
+      },
+      {
+        "name": "Tracking de Comidas",
+        "route": "/meals",
+        "description": "Lista de 8 comidas diarias con nombre, hora, calorías, descripción. Estados: pending, completed, skipped, partial"
+      },
+      {
+        "name": "Registro de Peso",
+        "route": "/weight",
+        "description": "Pesaje semanal con gráfico de progreso, captura de foto opcional, métricas calculadas"
+      },
+      {
+        "name": "Meal Prep",
+        "route": "/mealprep",
+        "description": "Checklist semanal de preparación con 9 items predefinidos para organizar comidas los domingos"
+      },
+      {
+        "name": "Mochila Diaria",
+        "route": "/backpack",
+        "description": "Checklist diario de items para llevar al trabajo: sandwiches, frutas, maní, yogurts, agua"
+      },
+      {
+        "name": "Sistema de Puntuación",
+        "route": "/",
+        "description": "Score semanal máximo 100 puntos: Comidas (50pts), Meal Prep (20pts), Tracking (15pts), Peso (15pts)"
+      },
+      {
+        "name": "Reportes",
+        "route": "/reports",
+        "description": "Reporte semanal y mensual con comidas completadas, cambio de peso, score total"
+      },
+      {
+        "name": "Historial",
+        "route": "/history",
+        "description": "Vista de calendario con días pasados y registros históricos"
+      },
+      {
+        "name": "Configuración",
+        "route": "/settings",
+        "description": "Peso inicial y meta, fecha de inicio, tema (light/dark/system), onboarding"
+      }
+    ],
+    "dataModels": [
+      {
+        "name": "DailyMeal",
+        "fields": [
+          "id",
+          "date",
+          "mealNumber (1-8)",
+          "status",
+          "completedAt",
+          "notes"
+        ]
+      },
+      {
+        "name": "WeightRecord",
+        "fields": [
+          "id",
+          "date",
+          "weight (lb)",
+          "photoUri",
+          "notes"
+        ]
+      },
+      {
+        "name": "MealPrepRecord",
+        "fields": [
+          "id (YYYY-WW)",
+          "weekStart",
+          "items",
+          "completedAt"
+        ]
+      },
+      {
+        "name": "BackpackCheck",
+        "fields": [
+          "id (YYYY-MM-DD)",
+          "date",
+          "items"
+        ]
+      },
+      {
+        "name": "WeeklyScore",
+        "fields": [
+          "id",
+          "weekStart",
+          "mealsScore",
+          "mealPrepScore",
+          "trackingScore",
+          "weightScore",
+          "total"
+        ]
+      }
+    ],
+    "navigation": {
+      "type": "Bottom Navigation Bar",
+      "items": [
+        {
+          "label": "Inicio",
+          "route": "/",
+          "icon": "Home"
+        },
+        {
+          "label": "Comidas",
+          "route": "/meals",
+          "icon": "Utensils"
+        },
+        {
+          "label": "Peso",
+          "route": "/weight",
+          "icon": "Scale"
+        },
+        {
+          "label": "Reportes",
+          "route": "/reports",
+          "icon": "BarChart3"
+        },
+        {
+          "label": "Ajustes",
+          "route": "/settings",
+          "icon": "Settings"
+        }
+      ]
+    },
+    "userGoals": {
+      "dailyMeals": 8,
+      "dailyCalories": 4050,
+      "weeklyMeals": 56,
+      "weightGoal": "Ganar 0.5-1 lb por semana",
+      "targetWeight": "De 104 lb a 135+ lb"
+    }
+  }
+}

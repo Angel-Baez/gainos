@@ -1,26 +1,28 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useMealPrep } from '@/hooks/useMealPrep';
-import { Card } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Progress } from '@/components/ui/progress';
-import { ClipboardList, Check, Calendar } from 'lucide-react';
-import { format, startOfWeek, endOfWeek } from 'date-fns';
-import { es } from 'date-fns/locale';
-import { cn } from '@/lib/utils';
+import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { useMealPrep } from "@/hooks/useMealPrep";
+import { cn } from "@/lib/utils";
+import { format, startOfWeek } from "date-fns";
+import { es } from "date-fns/locale";
+import { Calendar, Check, ClipboardList } from "lucide-react";
+import { useEffect } from "react";
 
 export default function MealPrepPage() {
-  const { items, stats, initializeMealPrep, toggleItem, weekId } = useMealPrep();
+  const { items, stats, initializeMealPrep, toggleItem, weekId } =
+    useMealPrep();
 
   useEffect(() => {
     initializeMealPrep();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [weekId]);
 
   const weekStart = startOfWeek(new Date(), { weekStartsOn: 0 });
-  const weekEnd = endOfWeek(new Date(), { weekStartsOn: 0 });
 
-  const progressPercent = stats.total > 0 ? (stats.completed / stats.total) * 100 : 0;
+  const progressPercent =
+    stats.total > 0 ? (stats.completed / stats.total) * 100 : 0;
   const isSunday = new Date().getDay() === 0;
 
   return (
@@ -42,7 +44,9 @@ export default function MealPrepPage() {
           <div className="flex items-start gap-3">
             <ClipboardList className="h-5 w-5 text-primary mt-0.5" />
             <div>
-              <p className="font-semibold text-sm">Hoy es domingo de Meal Prep</p>
+              <p className="font-semibold text-sm">
+                Hoy es domingo de Meal Prep
+              </p>
               <p className="text-xs text-muted-foreground mt-1">
                 Horario recomendado: 12:00pm - 3:00pm
               </p>
@@ -79,10 +83,10 @@ export default function MealPrepPage() {
           <Card
             key={index}
             className={cn(
-              'p-4 cursor-pointer transition-all border',
+              "p-4 cursor-pointer transition-all border",
               item.completed
-                ? 'bg-primary/10 border-primary/30'
-                : 'bg-card border-border hover:border-primary/50'
+                ? "bg-primary/10 border-primary/30"
+                : "bg-card border-border hover:border-primary/50"
             )}
             onClick={() => toggleItem(index)}
           >
@@ -94,8 +98,8 @@ export default function MealPrepPage() {
               />
               <span
                 className={cn(
-                  'text-sm',
-                  item.completed && 'line-through text-muted-foreground'
+                  "text-sm",
+                  item.completed && "line-through text-muted-foreground"
                 )}
               >
                 {item.name}

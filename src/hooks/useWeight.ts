@@ -1,26 +1,36 @@
-'use client';
+"use client";
 
-import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
-import { WeightRecord } from '@/types';
-import { getDateString } from './useMeals';
-import { DEFAULT_USER_SETTINGS } from '@/lib/constants';
+import { DEFAULT_USER_SETTINGS } from "@/lib/constants";
+import { db } from "@/lib/db";
+import { WeightRecord } from "@/types";
+import { useLiveQuery } from "dexie-react-hooks";
+import { getDateString } from "./useMeals";
 
 export function useWeight() {
+  // Obtener settings del usuario
+  const settings = useLiveQuery(
+    () => db.settings.get("user-settings"),
+    [],
+    null
+  );
+
   // Obtener todos los registros de peso (ordenados por fecha)
   const weights = useLiveQuery(
-    () => db.weights.orderBy('date').toArray(),
+    () => db.weights.orderBy("date").toArray(),
     [],
     []
   );
 
   // Obtener el ultimo peso registrado
-  const latestWeight = weights && weights.length > 0
-    ? weights[weights.length - 1]
-    : null;
+  const latestWeight =
+    weights && weights.length > 0 ? weights[weights.length - 1] : null;
 
   // Registrar nuevo peso
-  const addWeight = async (weight: number, photoUri?: string, notes?: string) => {
+  const addWeight = async (
+    weight: number,
+    photoUri?: string,
+    notes?: string
+  ) => {
     const date = getDateString();
     const record: WeightRecord = {
       id: date,
@@ -39,14 +49,18 @@ export function useWeight() {
     return db.weights.get(date);
   };
 
-  // Calcular progreso
-  const startWeight = DEFAULT_USER_SETTINGS.startWeight;
-  const goalWeight = DEFAULT_USER_SETTINGS.goalWeight;
+  // Calcular progreso usando settings del usuario
+  const startWeight =
+    settings?.startWeight ?? DEFAULT_USER_SETTINGS.startWeight;
+  const goalWeight = settings?.goalWeight ?? DEFAULT_USER_SETTINGS.goalWeight;
   const currentWeight = latestWeight?.weight ?? startWeight;
 
   const totalToGain = goalWeight - startWeight;
   const gained = currentWeight - startWeight;
-  const progressPercent = Math.max(0, Math.min(100, (gained / totalToGain) * 100));
+  const progressPercent =
+    totalToGain > 0
+      ? Math.max(0, Math.min(100, (gained / totalToGain) * 100))
+      : 0;
 
   // Cambio desde la semana pasada
   const getWeeklyChange = () => {

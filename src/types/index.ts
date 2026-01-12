@@ -1,6 +1,6 @@
 // Tipos para GainOS - PWA de tracking de aumento de peso
 
-export type MealStatus = 'pending' | 'completed' | 'skipped' | 'partial';
+export type MealStatus = "pending" | "completed" | "skipped" | "partial";
 
 export interface DailyMeal {
   id: string; // YYYY-MM-DD-mealNumber
@@ -67,4 +67,44 @@ export interface UserSettings {
   startWeight: number;
   goalWeight: number;
   startDate: string;
+  theme?: "light" | "dark" | "system";
+  onboardingCompleted?: boolean;
+}
+
+// Tipos para reportes
+export interface WeeklyReport {
+  weekId: string;
+  weekStart: string;
+  weekEnd: string;
+  mealsCompleted: number;
+  mealsTotal: number;
+  mealsPercentage: number;
+  mealsByNumber: Record<number, { completed: number; total: number }>;
+  weightStart?: number;
+  weightEnd?: number;
+  weightChange?: number;
+  mealPrepCompleted: boolean;
+  trackingDays: number;
+  score?: WeeklyScore;
+}
+
+export interface MonthlyReport {
+  month: string; // YYYY-MM
+  weeks: WeeklyReport[];
+  totalMealsCompleted: number;
+  totalMealsPossible: number;
+  averageScore: number;
+  weightStart?: number;
+  weightEnd?: number;
+  weightChange?: number;
+}
+
+// Tipos para exportacion
+export interface ExportData {
+  exportedAt: string;
+  settings: UserSettings;
+  meals: DailyMeal[];
+  weights: WeightRecord[];
+  mealPreps: MealPrepRecord[];
+  scores: WeeklyScore[];
 }

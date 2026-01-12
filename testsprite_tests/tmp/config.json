@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "gainos",
+    "projectPath": "/Users/macbook/Documents/Proyectos/gainos",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-4o7vamVc5JFAzdCrdlD4jyxPnaoYKfRWjNz3p38BsFuSEgJZuvSRg9yovEKWHicYmQyc5DwDa_WUgnapqxOwsVVIajcuKwHlKRxc4WvqBbrrMUJJNN7cyS9Q8tNK7hXBgIM"
+    }
+  },
+  "proxy": "http://7afe97f2-705b-456e-adef-7c3f7c2bffeb:ts2mlkPbXS8xx3032m9woPS756Rdv1rd@tun.testsprite.com:8080"
+}
