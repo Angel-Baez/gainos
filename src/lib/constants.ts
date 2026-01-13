@@ -1,4 +1,4 @@
-import { BackpackItem, MealInfo, MealPrepItem } from "@/types";
+import { BackpackItem, MealInfo, MealPrepItem, ShoppingItem } from "@/types";
 
 // Informacion de las 8 comidas diarias
 export const MEALS: MealInfo[] = [
@@ -116,3 +116,47 @@ export const SCORING = {
     acceptable: 5, // <0.3 lb
   },
 };
+
+// Categorías de la lista de compras
+export const SHOPPING_CATEGORIES = [
+  { id: "proteinas" as const, label: "Proteínas", icon: "Beef" },
+  { id: "lacteos" as const, label: "Lácteos", icon: "Milk" },
+  { id: "granos" as const, label: "Granos", icon: "Wheat" },
+  { id: "frutas" as const, label: "Frutas", icon: "Apple" },
+  { id: "vegetales" as const, label: "Vegetales", icon: "Carrot" },
+  { id: "otros" as const, label: "Otros", icon: "Package" },
+];
+
+// Items predefinidos para la lista de compras quincenal
+export const DEFAULT_SHOPPING_ITEMS: ShoppingItem[] = [
+  // Proteínas
+  { name: "Huevos", quantity: 30, unit: "unidades", category: "proteinas", purchased: false },
+  { name: "Pollo", quantity: 3, unit: "kg", category: "proteinas", purchased: false },
+  { name: "Carne molida", quantity: 2, unit: "kg", category: "proteinas", purchased: false },
+  { name: "Atún en lata", quantity: 6, unit: "latas", category: "proteinas", purchased: false },
+
+  // Lácteos
+  { name: "Leche", quantity: 4, unit: "litros", category: "lacteos", purchased: false },
+  { name: "Yogurt", quantity: 8, unit: "unidades", category: "lacteos", purchased: false },
+  { name: "Queso", quantity: 500, unit: "g", category: "lacteos", purchased: false },
+
+  // Granos
+  { name: "Arroz", quantity: 5, unit: "kg", category: "granos", purchased: false },
+  { name: "Avena", quantity: 1, unit: "kg", category: "granos", purchased: false },
+  { name: "Pan integral", quantity: 2, unit: "paquetes", category: "granos", purchased: false },
+
+  // Frutas
+  { name: "Bananas", quantity: 12, unit: "unidades", category: "frutas", purchased: false },
+  { name: "Manzanas", quantity: 8, unit: "unidades", category: "frutas", purchased: false },
+  { name: "Fresas", quantity: 500, unit: "g", category: "frutas", purchased: false },
+
+  // Vegetales
+  { name: "Espinaca", quantity: 500, unit: "g", category: "vegetales", purchased: false },
+  { name: "Brócoli", quantity: 2, unit: "unidades", category: "vegetales", purchased: false },
+  { name: "Zanahorias", quantity: 1, unit: "kg", category: "vegetales", purchased: false },
+
+  // Otros
+  { name: "Mantequilla de maní", quantity: 1, unit: "frasco", category: "otros", purchased: false },
+  { name: "Aceite de oliva", quantity: 1, unit: "botella", category: "otros", purchased: false },
+  { name: "Maní", quantity: 500, unit: "g", category: "otros", purchased: false },
+];

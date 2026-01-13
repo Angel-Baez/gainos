@@ -6,6 +6,7 @@ import {
   BackpackCheck,
   WeeklyScore,
   UserSettings,
+  ShoppingList,
 } from '@/types';
 
 // Definicion de la base de datos
@@ -16,6 +17,7 @@ const db = new Dexie('GainOSDatabase') as Dexie & {
   backpacks: EntityTable<BackpackCheck, 'id'>;
   scores: EntityTable<WeeklyScore, 'id'>;
   settings: EntityTable<UserSettings, 'id'>;
+  shoppingLists: EntityTable<ShoppingList, 'id'>;
 };
 
 // Esquema de la base de datos
@@ -26,6 +28,7 @@ db.version(1).stores({
   backpacks: 'id, date',
   scores: 'id, weekStart',
   settings: 'id',
+  shoppingLists: 'id, startDate',
 });
 
 export { db };

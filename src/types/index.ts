@@ -42,6 +42,24 @@ export interface BackpackCheck {
   items: BackpackItem[];
 }
 
+// Lista de compras
+export type ShoppingCategory = "proteinas" | "lacteos" | "granos" | "frutas" | "vegetales" | "otros";
+
+export interface ShoppingItem {
+  name: string;
+  quantity: number;
+  unit: string;
+  category: ShoppingCategory;
+  purchased: boolean;
+}
+
+export interface ShoppingList {
+  id: string; // YYYY-MM-Q1 o YYYY-MM-Q2 (quincena)
+  startDate: string;
+  items: ShoppingItem[];
+  completedAt?: Date;
+}
+
 export interface WeeklyScore {
   id: string; // YYYY-WW
   weekStart: string;
