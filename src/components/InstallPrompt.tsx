@@ -111,7 +111,7 @@ export function InstallPrompt() {
     <div
       className={cn(
         "fixed bottom-20 left-4 right-4 z-40 max-w-lg mx-auto",
-        "bg-card border border-border rounded-xl shadow-lg p-4",
+        "glass-elevated rounded-xl p-4",
         "animate-slide-up"
       )}
     >
@@ -191,7 +191,7 @@ export function IOSInstallInstructions() {
     <div
       className={cn(
         "fixed bottom-20 left-4 right-4 z-40 max-w-lg mx-auto",
-        "bg-card border border-border rounded-xl shadow-lg p-4",
+        "glass-elevated rounded-xl p-4",
         "animate-slide-up"
       )}
     >

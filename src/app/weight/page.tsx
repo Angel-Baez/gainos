@@ -278,7 +278,7 @@ export default function WeightPage() {
               .map((record) => (
                 <div
                   key={record.id}
-                  className="flex justify-between items-center p-3 bg-card border border-border rounded-lg"
+                  className="flex justify-between items-center p-3 glass rounded-lg"
                 >
                   <div className="flex items-center gap-3">
                     {record.photoUri && (

@@ -85,8 +85,8 @@ export default function MealPrepPage() {
             className={cn(
               "p-4 cursor-pointer transition-all border",
               item.completed
-                ? "bg-primary/10 border-primary/30"
-                : "bg-card border-border hover:border-primary/50"
+                ? "!bg-primary/20 border-primary/40"
+                : "hover:border-primary/50"
             )}
             onClick={() => toggleItem(index)}
           >

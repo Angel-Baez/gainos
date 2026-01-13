@@ -97,11 +97,11 @@ export function MealCard({
   };
 
   const getCardStyle = () => {
-    if (isCompleted) return "bg-primary/10 border-primary/30";
-    if (isSkipped) return "bg-destructive/10 border-destructive/30";
-    if (isPartial) return "bg-yellow-500/10 border-yellow-500/30";
-    if (isPast) return "bg-destructive/5 border-destructive/20";
-    return "bg-card border-border hover:border-primary/50 hover:shadow-md";
+    if (isCompleted) return "!bg-primary/20 border-primary/50";
+    if (isSkipped) return "!bg-destructive/20 border-destructive/50";
+    if (isPartial) return "!bg-yellow-500/20 border-yellow-500/50";
+    if (isPast) return "!bg-destructive/10 border-destructive/40";
+    return "hover:border-primary/40 hover:shadow-lg hover:scale-[1.01]";
   };
 
   const getCheckboxStyle = () => {

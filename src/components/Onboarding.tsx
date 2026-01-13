@@ -97,7 +97,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
   const CurrentIcon = steps[step].icon;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-linear-to-b from-background to-primary/5">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
       {/* Progress */}
       <div className="w-full max-w-md mb-8">
         <Progress value={(step / (steps.length - 1)) * 100} className="h-1" />

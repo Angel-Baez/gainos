@@ -1,4 +1,5 @@
 import { AppWrapper } from "@/components/AppWrapper";
+import { GlassBackground } from "@/components/GlassBackground";
 import { Navigation } from "@/components/Navigation";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import type { Metadata, Viewport } from "next";
@@ -36,9 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen`}>
+        <GlassBackground />
         <AppWrapper>
-          <main className="min-h-screen pb-20">{children}</main>
+          <main className="min-h-screen pb-20 relative">{children}</main>
           <Navigation />
         </AppWrapper>
         <ServiceWorkerRegistration />

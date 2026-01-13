@@ -49,7 +49,7 @@ export default function MealsPage() {
       </div>
 
       {/* Progress Summary */}
-      <div className="bg-card border border-border rounded-xl p-4 mb-6 animate-slide-up">
+      <div className="glass-elevated rounded-xl p-4 mb-6 animate-slide-up">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-muted-foreground">
             Progreso del dia
