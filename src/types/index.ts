@@ -5,7 +5,7 @@ export type MealStatus = "pending" | "completed" | "skipped" | "partial";
 export interface DailyMeal {
   id: string; // YYYY-MM-DD-mealNumber
   date: string; // YYYY-MM-DD
-  mealNumber: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  mealNumber: 1 | 2 | 3 | 4 | 5;
   status: MealStatus;
   completedAt?: Date;
   notes?: string;
@@ -43,7 +43,7 @@ export interface BackpackCheck {
 }
 
 // Lista de compras
-export type ShoppingCategory = "proteinas" | "lacteos" | "granos" | "frutas" | "vegetales" | "otros";
+export type ShoppingCategory = "proteinas" | "carbohidratos" | "grasas" | "condimentos";
 
 export interface ShoppingItem {
   name: string;
@@ -72,7 +72,7 @@ export interface WeeklyScore {
 
 // Informacion de cada comida
 export interface MealInfo {
-  number: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  number: 1 | 2 | 3 | 4 | 5;
   name: string;
   time: string;
   calories: number;

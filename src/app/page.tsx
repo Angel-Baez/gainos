@@ -54,7 +54,7 @@ export default function Dashboard() {
     .reduce((sum, m) => sum + m.calories, 0);
 
   const mealProgress = (mealStats.completed / mealStats.total) * 100;
-  const isSunday = new Date().getDay() === 0;
+  const isMonday = new Date().getDay() === 1;
 
   return (
     <div className="px-4 py-6 max-w-lg mx-auto">
@@ -122,20 +122,6 @@ export default function Dashboard() {
 
       {/* Quick Actions Grid */}
       <div className="grid grid-cols-2 gap-3 mb-6">
-        <Link href="/meals">
-          <Card className="p-4 h-full hover:border-primary/50 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <Utensils className="h-4 w-4 text-primary" />
-              <span className="text-xs font-medium">Comidas</span>
-            </div>
-            <p className="text-2xl font-bold">
-              {mealStats.completed}/{mealStats.total}
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              {Math.round(mealProgress)}% completado
-            </p>
-          </Card>
-        </Link>
 
         <Link href="/mealprep">
           <Card className="p-4 h-full hover:border-primary/50 transition-colors">
@@ -149,8 +135,8 @@ export default function Dashboard() {
             <p className="text-xs text-muted-foreground mt-1">
               {prepStats.isFullyCompleted
                 ? "Completado"
-                : isSunday
-                ? "Hoy es domingo"
+                : isMonday
+                ? "LUNES SAGRADO"
                 : "Pendiente"}
             </p>
           </Card>
@@ -167,19 +153,6 @@ export default function Dashboard() {
             </p>
             <p className="text-xs text-muted-foreground mt-1">
               {backpackStats.allChecked ? "Lista" : "Pendiente"}
-            </p>
-          </Card>
-        </Link>
-
-        <Link href="/weight">
-          <Card className="p-4 h-full hover:border-primary/50 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="h-4 w-4 text-primary" />
-              <span className="text-xs font-medium">Progreso</span>
-            </div>
-            <p className="text-2xl font-bold">{Math.round(progressPercent)}%</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              hacia meta de {goalWeight} lb
             </p>
           </Card>
         </Link>
@@ -214,15 +187,15 @@ export default function Dashboard() {
       <Card className="p-4 bg-linear-to-r from-primary/10 to-primary/5 border-primary/20">
         <h2 className="text-sm font-semibold mb-2">Enfoque de Hoy</h2>
         <ul className="text-xs text-muted-foreground space-y-1">
-          {mealStats.completed < 8 && (
-            <li>• Completar las {8 - mealStats.completed} comidas restantes</li>
+          {mealStats.completed < mealStats.total && (
+            <li>• Completar las {mealStats.total - mealStats.completed} comidas restantes</li>
           )}
           {!backpackStats.allChecked && <li>• Preparar mochila para manana</li>}
-          {isSunday && !prepStats.isFullyCompleted && (
-            <li>• Meal prep del domingo</li>
+          {isMonday && !prepStats.isFullyCompleted && (
+            <li>• LUNES SAGRADO - Meal prep del lunes</li>
           )}
-          {isSunday && <li>• Pesaje semanal (si no lo has hecho)</li>}
-          {mealStats.completed === 8 && backpackStats.allChecked && (
+          {isMonday && <li>• Pesaje semanal (si no lo has hecho)</li>}
+          {mealStats.completed === mealStats.total && backpackStats.allChecked && (
             <li className="text-primary font-medium">
               • Excelente dia - todo completado
             </li>

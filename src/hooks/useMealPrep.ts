@@ -8,12 +8,12 @@ import { useLiveQuery } from "dexie-react-hooks";
 
 // Obtener ID de la semana (YYYY-WW)
 const getWeekId = (date: Date = new Date()) => {
-  const weekStart = startOfWeek(date, { weekStartsOn: 0 }); // Domingo
+  const weekStart = startOfWeek(date, { weekStartsOn: 1 }); // Lunes (LUNES SAGRADO)
   return format(weekStart, "yyyy-'W'ww");
 };
 
 const getWeekStartString = (date: Date = new Date()) => {
-  const weekStart = startOfWeek(date, { weekStartsOn: 0 });
+  const weekStart = startOfWeek(date, { weekStartsOn: 1 });
   return format(weekStart, "yyyy-MM-dd");
 };
 

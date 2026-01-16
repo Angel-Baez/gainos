@@ -1,6 +1,6 @@
 "use client";
 
-import { MEALS } from "@/lib/constants";
+import { MEALS, WEEKLY_MEAL_PLAN } from "@/lib/constants";
 import { db } from "@/lib/db";
 import { DailyMeal, MealStatus } from "@/types";
 import { format } from "date-fns";
@@ -17,27 +17,64 @@ export const getDateString = (date: Date = new Date()) =>
 export function useMeals(date: Date = new Date()) {
   const dateString = getDateString(date);
 
-  // Obtener comidas del dia (reactivo)
-  const meals = useLiveQuery(
-    () => db.meals.where("date").equals(dateString).toArray(),
-    [dateString],
-    []
-  );
+  // Determinar el menú del día según WEEKLY_MEAL_PLAN
+  const days = ["DOM", "LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB"];
+  const jsDay = date.getDay();
+  // getDay(): 0=Domingo, 1=Lunes, ...
+  const planDay = days[jsDay];
+  const todayMenu = WEEKLY_MEAL_PLAN.find((d) => d.day === planDay);
+
+  // Generar estructura de comidas del día según el menú semanal
+  const dailyMealsInfo = todayMenu
+    ? [
+        {
+          number: 1,
+          name: "Desayuno",
+          time: "06:00",
+          calories: 650,
+          description: todayMenu.desayuno,
+        },
+        {
+          number: 2,
+          name: "Snack AM",
+          time: "10:00",
+          calories: 400,
+          description: todayMenu.snackAM,
+        },
+        {
+          number: 3,
+          name: "Almuerzo",
+          time: "13:00",
+          calories: 750,
+          description: todayMenu.almuerzo,
+        },
+        {
+          number: 4,
+          name: "Snack PM",
+          time: "17:00",
+          calories: 400,
+          description: todayMenu.snackPM,
+        },
+        {
+          number: 5,
+          name: "Cena",
+          time: "21:30",
+          calories: 400,
+          description: todayMenu.cena,
+        },
+      ]
+    : MEALS;
 
   // Inicializar comidas del dia si no existen
   const initializeDayMeals = async () => {
     const existing = await db.meals.where("date").equals(dateString).count();
-
     if (existing === 0) {
-      const newMeals: DailyMeal[] = MEALS.map((meal) => ({
+      const newMeals: DailyMeal[] = dailyMealsInfo.map((meal) => ({
         id: getMealId(dateString, meal.number),
         date: dateString,
-        mealNumber: meal.number,
+        mealNumber: meal.number as 1 | 2 | 3 | 4 | 5,
         status: "pending" as MealStatus,
       }));
-
-      // Usar bulkPut en lugar de bulkAdd para evitar errores de duplicados
-      // en caso de condiciones de carrera
       await db.meals.bulkPut(newMeals);
     }
   };
@@ -69,9 +106,16 @@ export function useMeals(date: Date = new Date()) {
     }
   };
 
+  // Obtener comidas del dia (reactivo)
+  const meals = useLiveQuery(
+    () => db.meals.where("date").equals(dateString).toArray(),
+    [dateString],
+    []
+  );
+
   // Obtener estadisticas del dia
   const stats = {
-    total: 8,
+    total: 5,
     completed: meals?.filter((m) => m.status === "completed").length ?? 0,
     skipped: meals?.filter((m) => m.status === "skipped").length ?? 0,
     partial: meals?.filter((m) => m.status === "partial").length ?? 0,
@@ -79,10 +123,11 @@ export function useMeals(date: Date = new Date()) {
   };
 
   // Combinar info de comidas con datos del dia
-  const mealsWithInfo = MEALS.map((info) => {
+  const mealsWithInfo = dailyMealsInfo.map((info) => {
     const dayMeal = meals?.find((m) => m.mealNumber === info.number);
     return {
       ...info,
+      number: info.number as 1 | 2 | 3 | 4 | 5,
       status: dayMeal?.status ?? "pending",
       completedAt: dayMeal?.completedAt,
       notes: dayMeal?.notes,
@@ -117,7 +162,7 @@ export function useWeekMeals(weekStartDate: Date) {
 
   const completedCount =
     weekMeals?.filter((m) => m.status === "completed").length ?? 0;
-  const totalPossible = 56; // 8 comidas x 7 dias
+  const totalPossible = 35; // 5 comidas x 7 dias
 
   return {
     meals: weekMeals,

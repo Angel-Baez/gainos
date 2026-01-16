@@ -1,96 +1,102 @@
 import { BackpackItem, MealInfo, MealPrepItem, ShoppingItem } from "@/types";
 
-// Informacion de las 8 comidas diarias
+// Informacion de las 5 comidas diarias (Plan Maestro 2,600 kcal)
 export const MEALS: MealInfo[] = [
   {
     number: 1,
-    name: "Batida Matutina",
-    time: "06:30",
-    calories: 500,
-    description: "Leche, avena, mantequilla de mani, guineo, miel",
+    name: "Desayuno",
+    time: "06:00",
+    calories: 650,
+    description: "Licuado (leche, avena, guineos, mani) + 2 huevos hervidos",
   },
   {
     number: 2,
-    name: "Desayuno Solido",
-    time: "09:30",
-    calories: 600,
-    description: "3 huevos, pan con mantequilla de mani, fruta, mani",
+    name: "Snack AM",
+    time: "10:00",
+    calories: 400,
+    description: "Sandwich: pan + 2 huevos + mantequilla de mani",
   },
   {
     number: 3,
-    name: "Snack Media Manana",
-    time: "11:30",
-    calories: 300,
-    description: "Sandwich jamon y queso, yogurt",
+    name: "Almuerzo",
+    time: "13:00",
+    calories: 750,
+    description: "Arroz + habichuelas + pollo + platano frito + aceite",
   },
   {
     number: 4,
-    name: "Almuerzo Principal",
-    time: "13:00",
-    calories: 900,
-    description: "Arroz, proteina, habichuelas, platano, aguacate",
+    name: "Snack PM",
+    time: "17:00",
+    calories: 400,
+    description: "Batido (leche, avena, mani, guineo) O pasta con sardinas",
   },
   {
     number: 5,
-    name: "Merienda Tarde",
-    time: "16:00",
-    calories: 400,
-    description: "Pan con queso/jamon, leche, fruta",
-  },
-  {
-    number: 6,
-    name: "Pre-Cena",
-    time: "19:00",
-    calories: 350,
-    description: "Batida rapida o huevos con pan",
-  },
-  {
-    number: 7,
-    name: "Cena Principal",
+    name: "Cena",
     time: "21:30",
-    calories: 700,
-    description: "Mangu completo o sobras del almuerzo",
-  },
-  {
-    number: 8,
-    name: "Batida Nocturna",
-    time: "22:30",
-    calories: 300,
-    description: "Leche, avena, miel - antes de dormir",
+    calories: 400,
+    description: "Bowl: arroz + pollo + habichuelas O vianda + sardinas",
   },
 ];
 
-// Total calorias diarias objetivo
-export const DAILY_CALORIES_TARGET = 4050;
+export type WeeklyMeal = {
+  day: string;
+  desayuno: string;
+  snackAM: string;
+  almuerzo: string;
+  snackPM: string;
+  cena: string;
+};
 
-// Items predefinidos para Meal Prep (domingos)
+export const WEEKLY_MEAL_PLAN: WeeklyMeal[] = [
+  { day: "LUN", desayuno: "Licuado + 2 huevos", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+pollo+habichuelas+plátano", snackPM: "Batido", cena: "Pasta con huevos" },
+  { day: "MAR", desayuno: "Avena+leche+canela+guineo", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+pollo+habichuelas+plátano", snackPM: "Batido", cena: "Bowl: arroz+pollo+habichuelas" },
+  { day: "MIÉ", desayuno: "Licuado + 2 huevos", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+sardinas+habichuelas", snackPM: "Pasta con sardinas", cena: "Batata + huevos" },
+  { day: "JUE", desayuno: "Avena+leche+canela+guineo", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+pollo+habichuelas+plátano", snackPM: "Batido", cena: "Sándwich maní+guineo x2" },
+  { day: "VIE", desayuno: "Licuado + 2 huevos", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+pollo+habichuelas+plátano", snackPM: "Batido", cena: "Bowl: arroz+pollo+habichuelas" },
+  { day: "SÁB", desayuno: "Avena+leche+canela+guineo", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+pollo+habichuelas+plátano", snackPM: "Pasta con sardinas", cena: "Yuca + sardinas" },
+  { day: "DOM", desayuno: "Licuado + 2 huevos", snackAM: "Sándwich pan+huevo+maní", almuerzo: "Arroz+pollo+habichuelas+plátano", snackPM: "Batido", cena: "Batata + huevos" },
+];
+
+// Total calorias diarias objetivo
+export const DAILY_CALORIES_TARGET = 2600;
+
+// Items predefinidos para Meal Prep (LUNES SAGRADO)
 export const DEFAULT_MEAL_PREP_ITEMS: MealPrepItem[] = [
-  { name: "15-20 huevos duros cocidos", completed: false },
-  { name: "5 kg arroz cocido (porciones individuales)", completed: false },
-  { name: "2+ kg proteina guisada (pollo/carne)", completed: false },
-  { name: "3 kg habichuelas cocidas", completed: false },
-  { name: "10 sandwiches armados (congelar 6)", completed: false },
-  { name: "5 bolsitas con 30g mani cada una", completed: false },
-  { name: "Ingredientes batidas medidos en bolsas ziploc", completed: false },
-  { name: "Vegetales lavados y cortados", completed: false },
-  { name: "Mochila preparada para el lunes", completed: false },
+  // Estacion 1 - Proteinas
+  { name: "Pollo guisado (5 lb) - desmenuzar", completed: false },
+  { name: "15 huevos hervidos (NO pelar)", completed: false },
+  { name: "Habichuelas guisadas (2 lb)", completed: false },
+  // Estacion 2 - Carbohidratos
+  { name: "Arroz cocido (5 tazas secas)", completed: false },
+  { name: "Avena pre-cocida (4 porciones con leche y canela)", completed: false },
+  { name: "Batata y yuca hervidas (con cascara)", completed: false },
+  { name: "7 platanos fritos", completed: false },
+  // Estacion 3 - Extras
+  { name: "Pasta cocida (1 lb con aceite)", completed: false },
+  { name: "Sofrito extra (cebolla, ajo, aji, tomate)", completed: false },
+  // Ensamblaje
+  { name: "6 tuppers ALMUERZO ensamblados", completed: false },
+  { name: "7 tuppers CENA ensamblados", completed: false },
+  { name: "7 bolsas de SNACKS preparadas", completed: false },
+  { name: "Distribuir en nevera y congelador", completed: false },
 ];
 
 // Items predefinidos para la mochila diaria
 export const DEFAULT_BACKPACK_ITEMS: BackpackItem[] = [
-  { name: "2 sandwiches (comidas 2 y 3)", checked: false },
-  { name: "2 frutas", checked: false },
-  { name: "2 bolsitas mani (30g cada una)", checked: false },
-  { name: "2 yogurts", checked: false },
-  { name: "1 botella agua (1 litro)", checked: false },
-  { name: "1 pote mantequilla de mani", checked: false },
+  { name: "Tupper ALMUERZO (arroz+pollo+habichuelas+platano)", checked: false },
+  { name: "Tupper CENA", checked: false },
+  { name: "Bolsa SNACKS (pan, 2 huevos, guineo)", checked: false },
+  { name: "Bolsita batido (3 cdas avena + 2 cdas mani)", checked: false },
+  { name: "Termo para licuado", checked: false },
+  { name: "Botella agua (1 litro)", checked: false },
 ];
 
 // Configuracion inicial del usuario
 export const DEFAULT_USER_SETTINGS = {
-  startWeight: 104, // lb
-  goalWeight: 135, // lb
-  startDate: new Date().toISOString().split("T")[0], // Fecha actual
+  startWeight: 47, // kg
+  goalWeight: 52, // kg (meta 12 semanas)
+  startDate: new Date().toISOString().split("T")[0],
   theme: "dark" as const,
   onboardingCompleted: false,
 };
@@ -99,7 +105,7 @@ export const DEFAULT_USER_SETTINGS = {
 export const SCORING = {
   meals: {
     max: 50,
-    perMeal: 50 / 56, // 56 comidas por semana (8 x 7)
+    perMeal: 50 / 35, // 35 comidas por semana (5 x 7)
   },
   mealPrep: {
     max: 20,
@@ -111,52 +117,49 @@ export const SCORING = {
   },
   weight: {
     max: 15,
-    excellent: 15, // 0.7-1.5 lb
-    good: 10, // 0.3-0.7 lb
-    acceptable: 5, // <0.3 lb
+    excellent: 15, // 0.3-0.5 kg/semana
+    good: 10, // 0.2-0.3 kg
+    acceptable: 5, // <0.2 kg
   },
 };
 
-// Categorías de la lista de compras
+// Categorias de la lista de compras
 export const SHOPPING_CATEGORIES = [
-  { id: "proteinas" as const, label: "Proteínas", icon: "Beef" },
-  { id: "lacteos" as const, label: "Lácteos", icon: "Milk" },
-  { id: "granos" as const, label: "Granos", icon: "Wheat" },
-  { id: "frutas" as const, label: "Frutas", icon: "Apple" },
-  { id: "vegetales" as const, label: "Vegetales", icon: "Carrot" },
-  { id: "otros" as const, label: "Otros", icon: "Package" },
+  { id: "proteinas" as const, label: "Proteinas", icon: "Beef" },
+  { id: "carbohidratos" as const, label: "Carbohidratos", icon: "Wheat" },
+  { id: "grasas" as const, label: "Grasas y Lacteos", icon: "Milk" },
+  { id: "condimentos" as const, label: "Condimentos", icon: "Carrot" },
 ];
 
-// Items predefinidos para la lista de compras quincenal
+// Items predefinidos para la lista de compras semanal (RD$3,000)
 export const DEFAULT_SHOPPING_ITEMS: ShoppingItem[] = [
-  // Proteínas
+  // Proteinas (RD$1,060)
   { name: "Huevos", quantity: 30, unit: "unidades", category: "proteinas", purchased: false },
-  { name: "Pollo", quantity: 3, unit: "kg", category: "proteinas", purchased: false },
-  { name: "Carne molida", quantity: 2, unit: "kg", category: "proteinas", purchased: false },
-  { name: "Atún en lata", quantity: 6, unit: "latas", category: "proteinas", purchased: false },
+  { name: "Muslos de pollo", quantity: 5, unit: "lb", category: "proteinas", purchased: false },
+  { name: "Sardinas en aceite", quantity: 4, unit: "latas", category: "proteinas", purchased: false },
+  { name: "Habichuelas rojas secas", quantity: 2, unit: "lb", category: "proteinas", purchased: false },
 
-  // Lácteos
-  { name: "Leche", quantity: 4, unit: "litros", category: "lacteos", purchased: false },
-  { name: "Yogurt", quantity: 8, unit: "unidades", category: "lacteos", purchased: false },
-  { name: "Queso", quantity: 500, unit: "g", category: "lacteos", purchased: false },
+  // Carbohidratos (RD$1,080)
+  { name: "Arroz blanco", quantity: 10, unit: "lb", category: "carbohidratos", purchased: false },
+  { name: "Avena en hojuelas", quantity: 2, unit: "lb", category: "carbohidratos", purchased: false },
+  { name: "Guineos maduros", quantity: 14, unit: "unidades", category: "carbohidratos", purchased: false },
+  { name: "Platanos maduros (freir)", quantity: 7, unit: "unidades", category: "carbohidratos", purchased: false },
+  { name: "Batata", quantity: 3, unit: "lb", category: "carbohidratos", purchased: false },
+  { name: "Yuca", quantity: 2, unit: "lb", category: "carbohidratos", purchased: false },
+  { name: "Pan de agua/viga", quantity: 2, unit: "paquetes", category: "carbohidratos", purchased: false },
+  { name: "Pasta/Espaguetis", quantity: 1, unit: "lb", category: "carbohidratos", purchased: false },
 
-  // Granos
-  { name: "Arroz", quantity: 5, unit: "kg", category: "granos", purchased: false },
-  { name: "Avena", quantity: 1, unit: "kg", category: "granos", purchased: false },
-  { name: "Pan integral", quantity: 2, unit: "paquetes", category: "granos", purchased: false },
+  // Grasas y Lacteos (RD$590)
+  { name: "Leche entera", quantity: 1, unit: "galon", category: "grasas", purchased: false },
+  { name: "Mantequilla de mani", quantity: 500, unit: "g", category: "grasas", purchased: false },
+  { name: "Aceite vegetal", quantity: 1, unit: "botella", category: "grasas", purchased: false },
+  { name: "Mani sin sal", quantity: 0.5, unit: "lb", category: "grasas", purchased: false },
 
-  // Frutas
-  { name: "Bananas", quantity: 12, unit: "unidades", category: "frutas", purchased: false },
-  { name: "Manzanas", quantity: 8, unit: "unidades", category: "frutas", purchased: false },
-  { name: "Fresas", quantity: 500, unit: "g", category: "frutas", purchased: false },
-
-  // Vegetales
-  { name: "Espinaca", quantity: 500, unit: "g", category: "vegetales", purchased: false },
-  { name: "Brócoli", quantity: 2, unit: "unidades", category: "vegetales", purchased: false },
-  { name: "Zanahorias", quantity: 1, unit: "kg", category: "vegetales", purchased: false },
-
-  // Otros
-  { name: "Mantequilla de maní", quantity: 1, unit: "frasco", category: "otros", purchased: false },
-  { name: "Aceite de oliva", quantity: 1, unit: "botella", category: "otros", purchased: false },
-  { name: "Maní", quantity: 500, unit: "g", category: "otros", purchased: false },
+  // Condimentos (RD$270)
+  { name: "Cebolla", quantity: 3, unit: "unidades", category: "condimentos", purchased: false },
+  { name: "Ajo", quantity: 1, unit: "cabeza", category: "condimentos", purchased: false },
+  { name: "Aji cubanela", quantity: 4, unit: "unidades", category: "condimentos", purchased: false },
+  { name: "Tomate", quantity: 3, unit: "unidades", category: "condimentos", purchased: false },
+  { name: "Sal, oregano, cubitos", quantity: 1, unit: "set", category: "condimentos", purchased: false },
+  { name: "Canela en polvo", quantity: 1, unit: "sobre", category: "condimentos", purchased: false },
 ];
