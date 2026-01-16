@@ -59,7 +59,7 @@ export default function MealsPage() {
         {/* Tab: Menú Diario */}
         <TabsContent value="diario">
           {/* Progress Summary */}
-          <div className="glass-elevated rounded-xl p-4 mb-6 animate-slide-up">
+          <div className="glass-elevated !bg-gray-800/10 border-gray-800/30 rounded-xl p-4 mb-6 animate-slide-up">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-muted-foreground">
                 Progreso del dia
@@ -144,31 +144,31 @@ export default function MealsPage() {
                   {day.day}
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="glass-elevated rounded-lg p-2 flex flex-col items-start min-h-[70px]">
+                  <div className="glass-elevated !bg-gray-600/10 border-gray-600/30 rounded-lg p-2 flex flex-col items-start min-h-[70px]">
                     <span className="text-xs font-semibold text-muted-foreground mb-1">
                       Desayuno
                     </span>
                     <span className="text-xs">{day.desayuno}</span>
                   </div>
-                  <div className="glass-elevated rounded-lg p-2 flex flex-col items-start min-h-[70px]">
+                  <div className="glass-elevated !bg-gray-600/10 border-gray-600/30 rounded-lg p-2 flex flex-col items-start min-h-[70px]">
                     <span className="text-xs font-semibold text-muted-foreground mb-1">
                       Snack AM
                     </span>
                     <span className="text-xs">{day.snackAM}</span>
                   </div>
-                  <div className="glass-elevated rounded-lg p-2 flex flex-col items-start min-h-[70px]">
+                  <div className="glass-elevated !bg-gray-600/10 border-gray-600/30 rounded-lg p-2 flex flex-col items-start min-h-[70px]">
                     <span className="text-xs font-semibold text-muted-foreground mb-1">
                       Almuerzo
                     </span>
                     <span className="text-xs">{day.almuerzo}</span>
                   </div>
-                  <div className="glass glass-elevated rounded-lg p-2 flex flex-col items-start min-h-[70px]">
+                  <div className="glass glass-elevated !bg-gray-600/10 border-gray-600/30 rounded-lg p-2 flex flex-col items-start min-h-[70px]">
                     <span className="text-xs font-semibold text-muted-foreground mb-1">
                       Snack PM
                     </span>
                     <span className="text-xs">{day.snackPM}</span>
                   </div>
-                  <div className="glass-elevated rounded-lg p-2 flex flex-col items-start min-h-[70px]">
+                  <div className="glass-elevated !bg-gray-600/10 border-gray-600/30 rounded-lg p-2 flex flex-col items-start min-h-[70px]">
                     <span className="text-xs font-semibold text-muted-foreground mb-1">
                       Cena
                     </span>

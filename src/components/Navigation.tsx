@@ -17,7 +17,7 @@ export function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 glass-nav safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 glass-nav  !bg-gray-900/10 border-gray-900/30 safe-area-bottom">
       <div className="flex justify-around items-center h-16 max-w-lg mx-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
