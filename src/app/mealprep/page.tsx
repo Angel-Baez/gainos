@@ -279,7 +279,7 @@ export default function MealPrepPage() {
                   <Card
                     key={index}
                     className={cn(
-                      "p-3 cursor-pointer transition-all border",
+                      "p-3 cursor-pointer transition-all border checkbox-item",
                       item.completed
                         ? "!bg-primary/20 border-primary/40"
                         : "hover:border-primary/50"
@@ -317,7 +317,7 @@ export default function MealPrepPage() {
                   <Card
                     key={index + 3}
                     className={cn(
-                      "p-3 cursor-pointer transition-all border",
+                      "p-3 cursor-pointer transition-all border checkbox-item",
                       item.completed
                         ? "!bg-yellow-500/20 border-yellow-500/40"
                         : "hover:border-yellow-500/50"
@@ -355,7 +355,7 @@ export default function MealPrepPage() {
                   <Card
                     key={index + 7}
                     className={cn(
-                      "p-3 cursor-pointer transition-all border",
+                      "p-3 cursor-pointer transition-all border checkbox-item",
                       item.completed
                         ? "!bg-orange-500/20 border-orange-500/40"
                         : "hover:border-orange-500/50"
@@ -393,7 +393,7 @@ export default function MealPrepPage() {
                   <Card
                     key={index + 9}
                     className={cn(
-                      "p-3 cursor-pointer transition-all border",
+                      "p-3 cursor-pointer transition-all border checkbox-item",
                       item.completed
                         ? "!bg-blue-500/20 border-blue-500/40"
                         : "hover:border-blue-500/50"
@@ -619,11 +619,11 @@ export default function MealPrepPage() {
           {/* Cronograma */}
           <Card className="p-4">
             <button
-              className="w-full flex items-center justify-between"
+              className="w-full flex items-center justify-between section-header p-2 -m-2"
               onClick={() => toggleSection("cronograma")}
             >
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-primary" />
+                <Clock className="h-4 w-4 text-primary section-icon" />
                 <h3 className="font-semibold text-sm">Cronograma del Lunes</h3>
               </div>
               {expandedSections.has("cronograma") ? (
@@ -650,11 +650,11 @@ export default function MealPrepPage() {
           {/* Instrucciones por Estación */}
           <Card className="p-4">
             <button
-              className="w-full flex items-center justify-between"
+              className="w-full flex items-center justify-between section-header p-2 -m-2"
               onClick={() => toggleSection("instrucciones")}
             >
               <div className="flex items-center gap-2">
-                <Utensils className="h-4 w-4 text-primary" />
+                <Utensils className="h-4 w-4 text-primary section-icon" />
                 <h3 className="font-semibold text-sm">Cómo Cocinar</h3>
               </div>
               {expandedSections.has("instrucciones") ? (
@@ -713,11 +713,11 @@ export default function MealPrepPage() {
           {/* Distribución de Almacenamiento */}
           <Card className="p-4">
             <button
-              className="w-full flex items-center justify-between"
+              className="w-full flex items-center justify-between section-header p-2 -m-2"
               onClick={() => toggleSection("almacenamiento")}
             >
               <div className="flex items-center gap-2">
-                <Refrigerator className="h-4 w-4 text-primary" />
+                <Refrigerator className="h-4 w-4 text-primary section-icon" />
                 <h3 className="font-semibold text-sm">Distribución Nevera/Congelador</h3>
               </div>
               {expandedSections.has("almacenamiento") ? (
@@ -760,11 +760,11 @@ export default function MealPrepPage() {
           {/* Contenido de Tuppers */}
           <Card className="p-4">
             <button
-              className="w-full flex items-center justify-between"
+              className="w-full flex items-center justify-between section-header p-2 -m-2"
               onClick={() => toggleSection("tuppers")}
             >
               <div className="flex items-center gap-2">
-                <ClipboardList className="h-4 w-4 text-primary" />
+                <ClipboardList className="h-4 w-4 text-primary section-icon" />
                 <h3 className="font-semibold text-sm">Contenido de Tuppers</h3>
               </div>
               {expandedSections.has("tuppers") ? (
@@ -794,11 +794,11 @@ export default function MealPrepPage() {
           {/* Pausa del Jueves */}
           <Card className="p-4 !bg-yellow-500/10 border-yellow-500/30">
             <button
-              className="w-full flex items-center justify-between"
+              className="w-full flex items-center justify-between section-header p-2 -m-2"
               onClick={() => toggleSection("jueves")}
             >
               <div className="flex items-center gap-2">
-                <Moon className="h-4 w-4 text-yellow-500" />
+                <Moon className="h-4 w-4 text-yellow-500 section-icon" />
                 <h3 className="font-semibold text-sm text-yellow-500">Pausa del Jueves Noche</h3>
               </div>
               {expandedSections.has("jueves") ? (
@@ -826,13 +826,13 @@ export default function MealPrepPage() {
           </Card>
 
           {/* Rutina Diaria */}
-          <Card className="p-4 !bg-yellow-500/10 border-yellow-500/30">
+          <Card className="p-4">
             <button
-              className="w-full flex items-center justify-between"
+              className="w-full flex items-center justify-between section-header p-2 -m-2"
               onClick={() => toggleSection("rutina")}
             >
               <div className="flex items-center gap-2">
-                <Sun className="h-4 w-4 text-primary" />
+                <Sun className="h-4 w-4 text-primary section-icon" />
                 <h3 className="font-semibold text-sm">Rutina Diaria</h3>
               </div>
               {expandedSections.has("rutina") ? (

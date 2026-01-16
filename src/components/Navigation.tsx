@@ -28,7 +28,7 @@ export function Navigation() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-all",
+                "flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-all hover:glass-elevated-hover hover:scale-[1.01]",
                 isActive
                   ? "text-primary scale-105"
                   : "text-muted-foreground hover:text-foreground"

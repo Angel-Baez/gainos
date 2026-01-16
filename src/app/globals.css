@@ -104,11 +104,11 @@
   --secondary: oklch(0.24 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.24 0 0);
-  --muted-foreground: oklch(0.65 0 0);
+  --muted-foreground: oklch(0.78 0 0);
   --accent: oklch(0.72 0.19 142);
   --accent-foreground: oklch(0.12 0 0);
   --destructive: oklch(0.65 0.2 25);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.72 0.19 142);
   --chart-1: oklch(0.72 0.19 142);
@@ -328,4 +328,136 @@
   opacity: 1;
   transform: translateY(0);
   transition: opacity 200ms, transform 200ms;
+}
+
+/* Interactive Elements - Hover & Focus States */
+.interactive {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px oklch(0 0 0 / 15%);
+}
+
+.interactive:active {
+  transform: translateY(0);
+}
+
+.dark .interactive:hover {
+  box-shadow: 0 4px 16px oklch(0.72 0.19 142 / 20%);
+}
+
+/* Clickable Cards */
+.clickable-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.clickable-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.clickable-card:hover {
+  transform: translateY(-2px);
+  border-color: oklch(0.72 0.19 142 / 50%) !important;
+}
+
+.dark .clickable-card:hover {
+  box-shadow: 0 8px 24px oklch(0.72 0.19 142 / 15%);
+}
+
+.clickable-card:active {
+  transform: translateY(0);
+}
+
+/* Collapsible Section Headers */
+.section-header {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+}
+
+.section-header:hover {
+  background: oklch(0 0 0 / 5%);
+}
+
+.dark .section-header:hover {
+  background: oklch(1 1 0 / 8%);
+}
+
+.section-header:hover .section-icon {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+.section-icon {
+  transition: all 0.2s ease;
+}
+
+/* Link Cards */
+.link-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.link-card:hover {
+  border-color: oklch(0.72 0.19 142 / 60%) !important;
+  transform: translateY(-2px);
+}
+
+.dark .link-card:hover {
+  box-shadow: 0 6px 20px oklch(0.72 0.19 142 / 20%);
+}
+
+.link-card:hover .link-icon {
+  color: var(--primary);
+  transform: translateX(2px);
+}
+
+.link-icon {
+  transition: all 0.2s ease;
+}
+
+/* Checkbox Items */
+.checkbox-item {
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.checkbox-item:hover {
+  background: oklch(0 0 0 / 3%);
+  border-color: oklch(0.72 0.19 142 / 40%) !important;
+}
+
+.dark .checkbox-item:hover {
+  background: oklch(1 1 0 / 5%);
+}
+
+/* Button hover emphasis */
+button:not(:disabled):hover,
+[role="button"]:not(:disabled):hover {
+  filter: brightness(1.05);
+}
+
+.dark button:not(:disabled):hover,
+.dark [role="button"]:not(:disabled):hover {
+  filter: brightness(1.1);
+}
+
+/* Tab triggers */
+[data-state="inactive"][role="tab"]:hover {
+  background: oklch(0 0 0 / 8%);
+}
+
+.dark [data-state="inactive"][role="tab"]:hover {
+  background: oklch(1 1 0 / 10%);
 }

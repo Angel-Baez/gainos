@@ -122,7 +122,7 @@ export function MealCard({
   return (
     <Card
       className={cn(
-        "p-4 transition-all duration-200 border",
+        "p-4 transition-all duration-200 border hover:cursor-pointer hover:glass-elevated-hover",
         getCardStyle(),
         isAnimating && "animate-scale-up"
       )}

@@ -96,11 +96,11 @@ export default function Dashboard() {
       </Card>
 
       {/* Weight Progress */}
-      <Card className="p-4 mb-4">
+      <Card className="p-4 mb-4 link-card">
         <Link href="/weight" className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10">
-              <Scale className="h-5 w-5 text-primary" />
+              <Scale className="h-5 w-5 text-primary link-icon" />
             </div>
             <div>
               <p className="text-sm font-semibold">{currentWeight} lb</p>
@@ -114,7 +114,7 @@ export default function Dashboard() {
               <p className="text-xs text-muted-foreground">Meta</p>
               <p className="text-sm font-medium">{goalWeight} lb</p>
             </div>
-            <ChevronRight className="h-5 w-5 text-muted-foreground" />
+            <ChevronRight className="h-5 w-5 text-muted-foreground link-icon" />
           </div>
         </Link>
         <Progress value={progressPercent} className="h-1.5 mt-3" />
@@ -124,9 +124,9 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 gap-3 mb-6">
 
         <Link href="/mealprep">
-          <Card className="p-4 h-full hover:border-primary/50 transition-colors">
+          <Card className="p-4 h-full link-card">
             <div className="flex items-center gap-2 mb-2">
-              <ClipboardList className="h-4 w-4 text-primary" />
+              <ClipboardList className="h-4 w-4 text-primary link-icon" />
               <span className="text-xs font-medium">Meal Prep</span>
             </div>
             <p className="text-2xl font-bold">
@@ -143,9 +143,9 @@ export default function Dashboard() {
         </Link>
 
         <Link href="/backpack">
-          <Card className="p-4 h-full hover:border-primary/50 transition-colors">
+          <Card className="p-4 h-full link-card">
             <div className="flex items-center gap-2 mb-2">
-              <Backpack className="h-4 w-4 text-primary" />
+              <Backpack className="h-4 w-4 text-primary link-icon" />
               <span className="text-xs font-medium">Mochila</span>
             </div>
             <p className="text-2xl font-bold">
@@ -166,17 +166,17 @@ export default function Dashboard() {
       {/* Quick Links */}
       <div className="grid grid-cols-2 gap-3 mb-6">
         <Link href="/history">
-          <Card className="p-3 hover:border-primary/50 transition-colors">
+          <Card className="p-3 link-card">
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-primary" />
+              <Calendar className="h-4 w-4 text-primary link-icon" />
               <span className="text-sm font-medium">Historial</span>
             </div>
           </Card>
         </Link>
         <Link href="/reports">
-          <Card className="p-3 hover:border-primary/50 transition-colors">
+          <Card className="p-3 link-card">
             <div className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4 text-primary" />
+              <BarChart3 className="h-4 w-4 text-primary link-icon" />
               <span className="text-sm font-medium">Reportes</span>
             </div>
           </Card>
